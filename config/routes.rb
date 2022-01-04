@@ -1,5 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'pages#home'
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  root to: "pages#home"
+  get '/dashboard', to: 'pages#dashboard'
+
+  resources :navigations, only: %i[show new create] do
+    resources :places, only: %i[show] do
+      member do
+        patch :visited, as: 'visited'
+      end
+    end
+    member do
+      get '/navigation_decision', to: 'pages#navigation_decision', as: 'decision'
+      get '/itinerary_to_nextplace', to: 'pages#itinerary_to_nextplace', as: 'itinerary'
+    end
+
+  end
+
+  resources :places, only: %i[new create]
 end
