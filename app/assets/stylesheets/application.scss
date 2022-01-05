@@ -9,6 +9,8 @@
 @import "font-awesome";
 
 // Your CSS partials
-@import "components/index";
+@import "config/myconfig";
 @import "pages/index";
-@import "../config/_myconfig.scss";
+@import "components/index";
+
+
