@@ -12,6 +12,7 @@
 
 ActiveRecord::Schema.define(version: 2022_01_05_110253) do
 
+
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
