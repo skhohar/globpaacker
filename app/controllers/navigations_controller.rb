@@ -27,6 +27,6 @@ class NavigationsController < ApplicationController
   end
 
   def navigation_params
-   # params.require(:navigation).permit(:user_id, :place_id, :starting_coordinate, :ending_coordinate, :done, :time_deadline, :date)
+   params.require(:navigation).permit(:user_id, :place_id, :starting_longitude, :starting_latitude, :ending_longitude, :ending_latitude, :done, :time_deadline, :date)
   end
 end
