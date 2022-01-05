@@ -2,11 +2,11 @@ class CreateNavigations < ActiveRecord::Migration[6.1]
   def change
     create_table :navigations do |t|
       t.integer :user_id
-      t.integer :place_id
-      t.integer :starting_coordinate
-      t.integer :ending_coordinate
+      t.integer :starting_longitude
+      t.integer :starting_latitude
+      t.integer :ending_longitude
+      t.integer :ending_latitude
       t.boolean :done
-      t.time :time_deadline
       t.date :date
 
       t.timestamps
