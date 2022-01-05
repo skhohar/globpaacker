@@ -1,5 +1,6 @@
 class Navigation < ApplicationRecord
 belongs_to :user
+has_many :steps
 
   validates :user_id, presence: true
   validates :starting_longitude, presence: true
