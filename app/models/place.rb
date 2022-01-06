@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   belongs_to :user
+  has_many :steps
 
   has_one_attached :photo
   INTERESTS = ["Culture", "Classical studies", "Cooking", "Critical theory", "Hobbies", "Literature", "Arts",
