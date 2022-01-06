@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard'
+  get '/direction-test', to: 'pages#direction-test'
 
   resources :navigations, only: %i[show new create] do
     resources :places, only: %i[show] do
