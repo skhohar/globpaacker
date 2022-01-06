@@ -1,5 +1,6 @@
 class Place < ApplicationRecord
   belongs_to :user
+  has_many :steps
 
   has_one_attached :photo
   INTERESTS = ["Culture", "Classical studies", "Cooking", "Critical theory", "Hobbies", "Literature", "Arts",
@@ -21,9 +22,9 @@ class Place < ApplicationRecord
 
   validates :name, uniqueness: true, length: { minimum: 6 }, presence: true
   validates :duration, presence: true
-  validates :interest, presence: true, inclusion: { in: INTERESTS }
   validates :senses, presence: true, inclusion: { in: SENSES }
   validates :environment, inclusion: { in: ENVIRONMENTS }
   validates :rating, inclusion: { in: RATING }
   validates :photo, presence: true
+  validates :address, presence: true
 end
