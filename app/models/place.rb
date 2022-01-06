@@ -26,4 +26,5 @@ class Place < ApplicationRecord
   validates :environment, inclusion: { in: ENVIRONMENTS }
   validates :rating, inclusion: { in: RATING }
   validates :photo, presence: true
+  validates :address, presence: true
 end
