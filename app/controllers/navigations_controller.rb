@@ -1,8 +1,10 @@
+
 class NavigationsController < ApplicationController
 
   before_action :set_navigation, only: :show
 
   def show
+
     @markers =
       [ {
         lat: @navigation.starting_longitude,
@@ -17,6 +19,14 @@ class NavigationsController < ApplicationController
 
   def new
     @navigation = Navigation.new
+    @markers =
+      [
+        lat: @navigation.starting_longitude,
+        lng: @navigation.starting_latitude
+
+      ]
+
+
   end
 
   def itinerary_to_nextplace
@@ -24,6 +34,11 @@ class NavigationsController < ApplicationController
 
   def visited
     @navigation = Navigation.find(params[:place_id])
+  end
+
+  def create
+    @navigation = Navigation.new(navigation_params)
+    @navigation.save
   end
 
   def navigation_decision
