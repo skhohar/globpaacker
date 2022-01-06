@@ -1,9 +1,18 @@
 class NavigationsController < ApplicationController
 
-  before_action :set_navigation, only: [:show, :new]
+  before_action :set_navigation, only: :show
 
   def show
-    @navigation = Navigation.find(params[:id])
+    @markers =
+      [ {
+        lat: @navigation.starting_longitude,
+        lng: @navigation.starting_latitude
+        },
+        {
+        lat: @navigation.ending_longitude,
+        lng: @navigation.ending_latitude
+        }
+      ]
   end
 
   def new
@@ -23,7 +32,7 @@ class NavigationsController < ApplicationController
   private
 
   def set_navigation
-    @navigation = Navigation.find(params[:place_id])
+    @navigation = Navigation.find(params[:id])
   end
 
   def navigation_params
