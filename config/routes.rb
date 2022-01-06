@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'pages#dashboard'
   get '/direction-test', to: 'pages#direction-test'
 
+  get '/geolocalisation', to: 'pages#geolocalisation'
+
   resources :navigations, only: %i[show new create] do
     resources :places, only: %i[show] do
       member do
@@ -11,6 +13,7 @@ Rails.application.routes.draw do
       end
     end
     member do
+      :places
       get '/navigation_decision', to: 'pages#navigation_decision', as: 'decision'
       get '/itinerary_to_nextplace', to: 'pages#itinerary_to_nextplace', as: 'itinerary'
     end
