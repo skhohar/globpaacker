@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   get '/geolocalisation', to: 'pages#geolocalisation'
 
-  resources :navigatons, only: %i[show new create] do
+  resources :navigations, only: %i[show new create] do
     resources :places, only: %i[show] do
       member do
         patch :visited, as: 'visited'
