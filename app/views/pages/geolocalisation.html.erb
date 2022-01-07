@@ -12,15 +12,19 @@ body { margin: 0; padding: 0; }
 </style>
 </head>
 <body>
-<div id="map"></div>
+    <div id="map">
 <script>
 	mapboxgl.accessToken = 'pk.eyJ1IjoiaWxoZW1iIiwiYSI6ImNrd292aTV3bzA2dnYydmwwZmsxM3o2cDYifQ.xqVqINH6xllxJfZBgOi0IA';
-const map = new mapboxgl.Map({
-container: 'map', // container ID
-style: 'mapbox://styles/mapbox/streets-v11', // style URL
-center: [-96, 37.8], // starting position
-zoom: 3 // starting zoom
-});
+  navigator.geolocation.getCurrentPosition(position => {
+    const map = new mapboxgl.Map({
+    container: 'map', // container ID
+    style: 'mapbox://styles/mapbox/streets-v11', // style URL
+    center: [position.coords.longitude, position.coords.latitude], // starting position
+    zoom: 3 // starting zoom
+    });
+
+    });
+
 
 // Create a new marker.
 const marker = new mapboxgl.Marker()
@@ -33,6 +37,7 @@ new mapboxgl.GeolocateControl({
 positionOptions: {
 enableHighAccuracy: true
 },
+
 
 // When active the map will receive updates to the device's location as it changes.
 trackUserLocation: true,
