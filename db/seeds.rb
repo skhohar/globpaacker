@@ -79,14 +79,14 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
   name = row["Nom du site"]
   interest = row["Categorie"]
   address = row["Adresse 1"] + " " + row["Code Postal"] + " " + row["Ville"]
-  place_longitude = row["Longitude"]
-  place_latitude = row["Latitude"]
+  longitude = row["Longitude"]
+  latitude = row["Latitude"]
 
   place = Place.new(name: name,
                   interest: Place::INTERESTS.sample(rand(1..7)),
                   address: address,
-                  place_longitude: place_longitude,
-                  place_latitude: place_latitude,
+                  longitude: longitude,
+                  latitude: latitude,
                   user_id: User.all.sample.id,
                   duration: rand(30..300),
                   rating: rand(1..5),
