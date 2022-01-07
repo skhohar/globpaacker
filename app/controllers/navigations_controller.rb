@@ -26,7 +26,6 @@ class NavigationsController < ApplicationController
 
       ]
 
-
   end
 
   def itinerary_to_nextplace
@@ -38,7 +37,12 @@ class NavigationsController < ApplicationController
 
   def create
     @navigation = Navigation.new(navigation_params)
-    @navigation.save
+    @navigation.user = current_user
+    if @navigation.save
+      redirect_to navigation_path(@navigation)
+    else
+      render :new
+    end
   end
 
   def navigation_decision
