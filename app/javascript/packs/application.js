@@ -23,9 +23,9 @@ import "bootstrap";
 // Internal imports, e.g:
 // import { initSelect2 } from '../components/init_select2';
 import { initMapbox } from '../plugins/init_mapbox';
-// import { stepMaker } from '../plugins/init_stepmaker';
+import { initMapbox2 } from '../plugins/init_mapbox2';
 
 document.addEventListener('turbolinks:load', () => {
   initMapbox();
-  // stepMaker();
+  initMapbox2();
 })

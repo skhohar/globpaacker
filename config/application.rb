@@ -15,6 +15,7 @@ module Globpaacker
     end
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.1
+    config.hosts << "4e06-85-69-174-28.ngrok.io"
 
     # Configuration for the application, engines, and railties goes here.
     #
