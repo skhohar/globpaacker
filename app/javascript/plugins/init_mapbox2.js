@@ -1,7 +1,7 @@
 import mapboxgl from 'mapbox-gl';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-const initMapbox = () => {
+const initMapbox2 = () => {
   const mapElement = document.getElementById('map');
 
   const fitMapToMarkers = (map, markers) => {
@@ -46,4 +46,4 @@ const initMapbox = () => {
 };
 
 
-export { initMapbox };
+export { initMapbox2 };
