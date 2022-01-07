@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   devise_for :users
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard'
+  get '/direction-test', to: 'pages#direction-test'
   get '/geolocalisation', to: 'pages#geolocalisation'
 
   resources :navigations, only: %i[show new create] do
@@ -18,5 +19,5 @@ Rails.application.routes.draw do
 
   end
 
-  resources :places, only: %i[new create]
+  resources :places, only: %i[new create destroy]
 end

@@ -10,8 +10,10 @@ require 'faker'
 
 
 puts 'cleaning DB.....'
-User.destroy_all
+Step.destroy_all
+Navigation.destroy_all
 Place.destroy_all
+User.destroy_all
 
 puts "seeding"
 
@@ -65,6 +67,10 @@ urls = ['https://images.unsplash.com/photo-1576453336457-64848c4ab6e9?ixlib=rb-1
 
 puts 'created 3 users'
 
+n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitude: "43.294522397027606", ending_longitude: "5.380254614802709", ending_latitude: "43.30283129514038", done: true, user_id: User.last.id, time_deadline: "10:12:22.869900", date: "2022-01-06")
+
+puts 'created 1 navigation'
+
 csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
 
 CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
@@ -72,13 +78,15 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
 
   name = row["Nom du site"]
   interest = row["Categorie"]
-  place_longitude = row["Longitude"]
-  place_latitude = row["Latitude"]
+  address = row["Adresse 1"] + " " + row["Code Postal"] + " " + row["Ville"]
+  longitude = row["Longitude"]
+  latitude = row["Latitude"]
 
   place = Place.new(name: name,
                   interest: Place::INTERESTS.sample(rand(1..7)),
-                  place_longitude: place_longitude,
-                  place_latitude: place_latitude,
+                  address: address,
+                  longitude: longitude,
+                  latitude: latitude,
                   user_id: User.all.sample.id,
                   duration: rand(30..300),
                   rating: rand(1..5),
@@ -92,7 +100,10 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
   p place.photo.key
 
  puts 'created 1 place .....'
- end
 
+ step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
+ 
+ puts 'created 1 step'
+end
  puts ' done seeding ......'
 
