@@ -6,13 +6,18 @@ class PlacesController < ApplicationController
 
  def create
   @place = Place.new(place_params)
-  @place.user_id = current_user
-  @place.save
-  if @place.save!
+  @place.user = current_user
+  if @place.save
     redirect_to dashboard_path notice: "You successfully create a new place"
   else
+    flash[:notice] = 'Something is missing'
     render :new
   end
+ end
+
+ def destroy
+  @place.destroy
+    redirect_to dashboard_path, notice: 'The place was successfully destroyed.'
  end
 
  private

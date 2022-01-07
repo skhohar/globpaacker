@@ -1,0 +1,17 @@
+<%= simple_form_for(@place) do |f| %>
+ <div class="form-inputs">
+    <%= f.input :name, placeholder: 'Title' %>
+    <%= f.input :address, placeholder: "Address" %>
+    <%= f.input :duration, placeholder: 'Duration (minutes)'  %>
+    <%= f.input :exterior, as: :boolean, inline_label: 'This journey is in exterior' %>
+    <%= f.input :interest, collection: Place::INTERESTS, input_html: { multiple: true } %>
+    <%= f.select :senses, collection: Place::SENSES, placeholder: 'Select senses (several possible)'%>
+    <%= f.input :description, placeholder: 'Tell us a bit about this Place!'  %>
+    <%= f.input :environment, collection: Place::ENVIRONMENTS, placeholder: 'Select environment (several possible)' %>
+    <%= f.input :photo, as: :file %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+  </div>
+<% end %>

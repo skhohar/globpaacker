@@ -20,5 +20,5 @@ Rails.application.routes.draw do
 
   end
 
-  resources :places, only: %i[new create]
+  resources :places, only: %i[new create destroy]
 end
