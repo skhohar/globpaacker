@@ -3,7 +3,6 @@ Rails.application.routes.draw do
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard'
   get '/direction-test', to: 'pages#direction-test'
-
   get '/geolocalisation', to: 'pages#geolocalisation'
 
   resources :navigations, only: %i[show new create] do
