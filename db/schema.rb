@@ -60,8 +60,8 @@ ActiveRecord::Schema.define(version: 2022_01_06_152645) do
   create_table "places", force: :cascade do |t|
     t.string "name"
     t.bigint "user_id", null: false
-    t.float "latitude"
-    t.float "longitude"
+    t.float "place_latitude"
+    t.float "place_longitude"
     t.string "photo"
     t.string "description"
     t.string "interest"
