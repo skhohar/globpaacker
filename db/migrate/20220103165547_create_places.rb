@@ -3,8 +3,8 @@ class CreatePlaces < ActiveRecord::Migration[6.1]
     create_table :places do |t|
       t.string :name
       t.references :user, null: false, foreign_key: true
-      t.float :place_latitude
-      t.float :place_longitude
+      t.float :latitude
+      t.float :longitude
       t.string :photo
       t.string :description
       t.string :interest
