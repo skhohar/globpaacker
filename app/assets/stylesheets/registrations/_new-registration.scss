@@ -1,0 +1,32 @@
+.box {
+  margin: 30px !important;
+  margin-top: 15px !important;
+  padding: 20px !important;
+  border-radius: 10px;
+  background-color: #9fd4dbfa;
+}
+
+body {
+  background-color: #eaf0f1;
+}
+
+input {
+  border-radius: 10px !important;
+}
+
+h2 {
+  display: flex;
+  justify-content: center;
+}
+
+.form-actions, a {
+  display: flex;
+  justify-content: center !important;
+}
+
+a, small {
+  color: black;
+  font-weight: 600;
+}
+
+

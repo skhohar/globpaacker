@@ -60,10 +60,10 @@ urls = ['https://images.unsplash.com/photo-1576453336457-64848c4ab6e9?ixlib=rb-1
   'https://images.unsplash.com/photo-1536482252533-5c45502f7aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80',
   'https://images.unsplash.com/photo-1601441322244-90edf2e328af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80']
 
- u1 = User.create!(email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
- u2 = User.create!(email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
- u3 = User.create!(email: "illem@gmail.com", password: "123456789", password_confirmation: "123456789")
- u4 = User.create!(email: "test@journey.com", password: "123456789", password_confirmation: "123456789")
+ u1 = User.create!(name: "Erika", email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u2 = User.create!(name: "Sarah", email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u3 = User.create!(name: "Ilhem", email: "illem@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u4 = User.create!(name: "Julie", email: "test@journey.com", password: "123456789", password_confirmation: "123456789")
 
 puts 'created 3 users'
 
