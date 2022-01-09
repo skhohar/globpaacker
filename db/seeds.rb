@@ -95,15 +95,26 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
                   environment: Place::ENVIRONMENTS.sample,
                   description: Faker::Quote.jack_handey
                 )
- place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')             
+ place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
   place.save
   p place.photo.key
+
+p1= Place.create!(name: Musée Cantini, address: 19 Rue Grignan 13006 Marseille)
+p2= Place.create!(name: Opéra de Marseille, address: 2 Rue Molière 13001 Marseille)
+p3= Place.create!(name: Palais du Pharo, address: 58, Boulevard Charles Livon 13007 Marseille)
+p4= Place.create!(name: Mucem, address: 1 Esplanade J4, 13002 Marseille)
+p5= Place.create!(name: Parc Borély, Avenue du Parc Borély 13008 Marseille)
+p6= Place.create!(name: Palais des Arts, address: 1, place Auguste et François Carli 13006 Marseille)
+p7= Place.create!(name: Basilique Notre-Dame de la Garde, address: Rue Fort du Sanctuaire 13006 Marseille)
+p8= Place.create!(name: Palais Longchamps, address: Boulevard, jardin Zoologique 13004 Marseille)
+p9= Place.create!(name: Escaliers du Cours Julien, address: Rue Estelle, 13006 Marseille)
+p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Charité 13002 Marseille)
+
 
  puts 'created 1 place .....'
 
  step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
- 
+
  puts 'created 1 step'
 end
  puts ' done seeding ......'
-
