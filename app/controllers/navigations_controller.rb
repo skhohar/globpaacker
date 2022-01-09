@@ -4,7 +4,6 @@ class NavigationsController < ApplicationController
   before_action :set_navigation, only: :show
 
   def show
-
     @markers =
       [ {
         lat: @navigation.starting_longitude,
