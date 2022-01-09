@@ -6,7 +6,8 @@ class PlacesController < ApplicationController
 
  def create
   @place = Place.new(place_params)
-  @place.user = current_user
+  @user = current_user
+  @place.user = @user
   if @place.save
     redirect_to dashboard_path notice: "You successfully create a new place"
   else
