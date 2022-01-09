@@ -99,16 +99,16 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
   place.save
   p place.photo.key
 
-p1= Place.create!(name: Musée Cantini, address: 19 Rue Grignan 13006 Marseille, duration: 8 min, rating: 4)
-p2= Place.create!(name: Opéra de Marseille, address: 2 Rue Molière 13001 Marseille, duration: 4 min, rating: 4,4)
-p3= Place.create!(name: Palais du Pharo, address: 58, Boulevard Charles Livon 13007 Marseille, duration: 9 min, rating: 4,6)
-p4= Place.create!(name: Mucem, address: 1 Esplanade J4, 13002 Marseille, duration: 4 min, rating: 4,4)
-p5= Place.create!(name: Parc Borély, Avenue du Parc Borély 13008 Marseille, duration: 60 min, rating: 4,5)
-p6= Place.create!(name: Palais des Arts, address: 1, place Auguste et François Carli 13006 Marseille, duration: 11 min, rating: 3,3)
-p7= Place.create!(name: Basilique Notre-Dame de la Garde, address: Rue Fort du Sanctuaire 13006 Marseille, duration: 26 min, rating: 4,7)
-p8= Place.create!(name: Palais Longchamp, address: Boulevard jardin Zoologique 13004 Marseille, duration: 33 min, rating: 4,5)
-p9= Place.create!(name: Escaliers du Cours Julien, address: Rue Estelle, 13006 Marseille, duration: 12 min, rating: 4,1)
-p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Charité 13002 Marseille, duration: 13 min, rating: 4,4)
+p1= Place.create!(name: Musée Cantini, address: 19 Rue Grignan 13006 Marseille, duration: 8 min, rating: 4, interest: culture, interior, environement: calm, sense: best sight)
+p2= Place.create!(name: Opéra de Marseille, address: 2 Rue Molière 13001 Marseille, duration: 4 min, rating: 4,4, interest: opera, interior, environment: calm, sense: amazing hearing)
+p3= Place.create!(name: Palais du Pharo, address: 58, Boulevard Charles Livon 13007 Marseille, duration: 9 min, rating: 4,6), interest: history, interior, environment: sunny, sense: best sight)
+p4= Place.create!(name: Mucem, address: 1 Esplanade J4, 13002 Marseille, duration: 4 min, rating: 4,4, interest: arts, interior, environment: cloudy, sense: best sight)
+p5= Place.create!(name: Parc Borély, Avenue du Parc Borély 13008 Marseille, duration: 60 min, rating: 4,5, interest: botany, exterior, environement: loudy, sense: amazing hearing)
+p6= Place.create!(name: Palais des Arts, address: 1, place Auguste et François Carli 13006 Marseille, duration: 11 min, rating: 3,3, interest: arts, interior, environement: windy, sense: best sight)
+p7= Place.create!(name: Basilique Notre-Dame de la Garde, address: Rue Fort du Sanctuaire 13006 Marseille, duration: 26 min, rating: 4,7, interest: architecture, interior, environement: calm, sense: best sight)
+p8= Place.create!(name: Palais Longchamp, address: Boulevard jardin Zoologique 13004 Marseille, duration: 33 min, rating: 4,5, interest: photography, interior, environement: sunny, sense: best sight)
+p9= Place.create!(name: Escaliers du Cours Julien, address: Rue Estelle, 13006 Marseille, duration: 12 min, rating: 4,1, interest: visual arts, exterior, environment: sunny, sense: best sight)
+p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Charité 13002 Marseille, duration: 13 min, rating: 4,4, interest: contemporary history, interior, environment: cloudy, sense: amazing hearing)
 
 
  puts 'created 1 place .....'
