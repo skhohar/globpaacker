@@ -17,20 +17,25 @@ img {
 }
 
 p {
-  font-size: 15px;
-  margin-top: 25px;
-}
+  font-size: 20px;
+  color: #eaf0f1;
+  font-weight: bold;
+  position: absolute;
+  bottom: 30px;
+  left: 10px;
+  }
 
 .two-buttons {
   display: flex;
   flex-direction: column;
   margin-top: 2em;
-  border-radius: 5px;
   color: rgba(black, 0.7);
 }
 
 .login-but {
   margin-top: 1em;
+  font-weight: bolder;
+  border-radius: 10px !important;
 }
 
 button { padding: 0.5em;
@@ -43,4 +48,6 @@ button:hover {
 
 #start-but {
   width: 74px;
+  font-weight: bolder;
+  border-radius: 10px;
 }

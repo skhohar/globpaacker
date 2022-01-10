@@ -1,7 +1,7 @@
 <div class="container-fluid" style="padding-top: 20px; height: 100%">
   <div id="map"
     style="width: 100%; height: 800px;"
-    <%# data-markers="<%= @markers.to_json %>" %>
+    data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
 
@@ -21,10 +21,10 @@
         accessToken: mapboxgl.accessToken
       });
 
-      map.addControl(
-      new MapboxDirections({
-      accessToken: mapboxgl.accessToken
-      }),
-      'top-left'
-      );
+      map.addControl(directions,'top-left');
+
+      map.on('load',  function() {
+      directions.setOrigin([12, 23]); // can be address in form setOrigin("12, Elm Street, NY")
+      directions.setDestinaion([11, 22]); // can be address
+      })
     </script>
