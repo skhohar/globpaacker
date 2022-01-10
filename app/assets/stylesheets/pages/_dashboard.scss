@@ -6,7 +6,6 @@ h1, p {
 
 p {
   font-weight: bold;
-  margin-top: 9px;
 }
 
 .cardstyle {
@@ -34,6 +33,13 @@ a {
 .title {
   padding: 5px;
   border-top: 6px solid #eaf0f1;
+  margin-top: 7px;
 }
 
-
+#destroy {
+   font-family:"Work Sans", "Helvetica", "sans-serif";
+   color: #9fd4dbfa;
+   font-size: 16px;
+   font-weight: lighter;
+   margin-top: 0;
+}

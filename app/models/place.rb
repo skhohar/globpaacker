@@ -1,9 +1,9 @@
 class Place < ApplicationRecord
   belongs_to :user
-  has_many :steps
+  has_many :steps, dependent: :destroy
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
-  
+
   has_one_attached :photo
   INTERESTS = ["Culture", "Classical studies", "Cooking", "Critical theory", "Hobbies", "Literature", "Arts",
                "Fiction", "Game", "Poetry", "Sports", "Performing arts", "Dance", "Film", "Music", "Opera", "Theatre",
@@ -22,11 +22,11 @@ class Place < ApplicationRecord
   SENSES = ['Best Sight', "Amazing Hearings", 'Best Tastes', "Amazing Touch", 'Best Smell']
   ENVIRONMENTS = ["Cloudy", "Sunny", "Windy", "Calm", "Loudy"]
 
-#  validates :name, uniqueness: true, length: { minimum: 6 }, presence: true
-#  validates :duration, presence: true
-#  validates :senses, presence: true, inclusion: { in: SENSES }
-#  validates :environment, inclusion: { in: ENVIRONMENTS }
-#  validates :rating, inclusion: { in: RATING }
-#  validates :photo, presence: true
-#  validates :address, presence: true
+  #  validates :name, uniqueness: true, length: { minimum: 6 }, presence: true
+  #  validates :duration, presence: true
+  #  validates :senses, presence: true, inclusion: { in: SENSES }
+  #  validates :environment, inclusion: { in: ENVIRONMENTS }
+  #  validates :rating, inclusion: { in: RATING }
+  #  validates :photo, presence: true
+  #  validates :address, presence: true
 end

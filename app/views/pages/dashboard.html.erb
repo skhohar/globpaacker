@@ -26,13 +26,13 @@
                     <div class="place_card">
                       <p class="title"><%= place.name.upcase %></p>
                       <p> Adress: <%= place.address %></p>
-                      <p><%= place.duration %> | <%= place.exterior? ? "Exterior" : "Interior" %> | <%= place.senses %> | <%= place.interest %></p>
-                      <p>Rating: <%= place.rating %></p>
+                      <p><%= place.duration %> | <%= place.exterior? ? "Exterior" : "Interior" %> | <%= place.senses %> | <%= place.interest %> |  Rating: <%= place.rating %></p>
                       <p> Description: <%= place.description %></p>
 
-                     <%= link_to place_path(place) do %>
-                         <div class="btn btn-secondary"> <%= link_to "destroy this place"%> </p>
-        </div>
+                   <%= link_to place_path(place), method: :delete do %>
+                      <div class="btn btn-secondary">
+                          <p id="destroy" > destroy this place </p>
+                      </div>
                       <% end %>
                     </div>
 

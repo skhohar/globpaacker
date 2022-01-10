@@ -14,5 +14,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def after_update_path_for(_resource)
     blogs_path
   end
-
 end
