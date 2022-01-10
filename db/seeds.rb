@@ -119,7 +119,7 @@ p11 = Place.new(name: "Wonderful spices of Saladin",
                   senses: 'Best Smell',
                   exterior: false,
                   environment: "Calm",
-                  description: "Discover incredibkle spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+                  description: "Discover incredible spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
 p12 = Place.new(name: "Fresh sea scents on the Old Port fish market",
                   interest: "Food", "Tradition",
                   address: "11 quai des Belges, 13001 Marseille",
@@ -177,5 +177,3 @@ p15 = Place.new(name: "Making of virtuosos",
  puts 'created 1 step'
 end
  puts ' done seeding ......'
-
-

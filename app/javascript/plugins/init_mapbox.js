@@ -32,24 +32,24 @@ const addDirectionToMap = (map) => {
   map.addControl(directions, 'top-left');
 }
 
-const getMyPosition = (map) => {
-  function success(pos) {
-    const crd = pos.coords;
-    const myCoordArray = [];
+// const getMyPosition = (map) => {
+//   function success(pos) {
+//     const crd = pos.coords;
+//     const myCoordArray = [];
 
-    console.log('Votre position actuelle est :');
-    console.log(crd)
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude : ${crd.longitude}`);
-    console.log(`La précision est de ${crd.accuracy} mètres.`);
-    return myCoordArray.push(crd.longitude, crd.latitude)
-  }
+//     // console.log('Votre position actuelle est :');
+//     // console.log(crd)
+//     // console.log(`Latitude : ${crd.latitude}`);
+//     // console.log(`Longitude : ${crd.longitude}`);
+//     // console.log(`La précision est de ${crd.accuracy} mètres.`);
+//     return myCoordArray.push(crd.longitude, crd.latitude)
+//   }
 
-  function error(err) {
-    console.warn(`ERREUR (${err.code}): ${err.message}`);
-  }
-  navigator.geolocation.getCurrentPosition(success, error);
-}
+//   function error(err) {
+//     console.warn(`ERREUR (${err.code}): ${err.message}`);
+//   }
+//   navigator.geolocation.getCurrentPosition(success, error);
+// }
 
 
 const initMapbox = () => {
@@ -57,7 +57,7 @@ const initMapbox = () => {
 
 
   if (mapElement) { // only build a map if there's a div#map to inject into
-    console.log("geoloc")
+    // console.log("geoloc")
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     navigator.geolocation.getCurrentPosition(position => {
       const map = new mapboxgl.Map({
@@ -66,64 +66,69 @@ const initMapbox = () => {
         center: [position.coords.longitude, position.coords.latitude],
         zoom: 14
       });
-      // const markers = JSON.parse(mapElement.dataset.markers);
       // markers.forEach((marker) => {
-      // new mapboxgl.Marker()
-      //   .setLngLat([position.coords.longitude, position.coords.latitude])
-      //   .addTo(map);
-      // });
-      const start = [position.coords.longitude, position.coords.latitude];
-      // create a function to make a directions request
-      async function getRoute(end) {
-        // make a directions request using cycling profile
-        // an arbitrary start will always be the same
-        // only the end or destination will change
-        const query = await fetch(
-          `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
-          { method: 'GET' }
-        );
-        const json = await query.json();
-        const data = json.routes[0];
-        const route = data.geometry.coordinates;
-        const geojson = {
-          type: 'Feature',
-          properties: {},
-          geometry: {
-            type: 'LineString',
-            coordinates: route
-          }
-        };
-        // if the route already exists on the map, we'll reset it using setData
-        if (map.getSource('route')) {
-          map.getSource('route').setData(geojson);
-        }
-        // otherwise, we'll make a new request
-        else {
-          map.addLayer({
-            id: 'route',
-            type: 'line',
-            source: {
-              type: 'geojson',
-              data: geojson
-            },
-            layout: {
-              'line-join': 'round',
-              'line-cap': 'round'
-            },
-            paint: {
-              'line-color': '#3887be',
-              'line-width': 5,
-              'line-opacity': 0.75
+        // new mapboxgl.Marker()
+        //   .setLngLat([position.coords.longitude, position.coords.latitude])
+        //   .addTo(map);
+        // });
+        async function getRoute(start, end) {
+          // make a directions request using cycling profile
+          // an arbitrary start will always be the same
+          // only the end or destination will change
+          const query = await fetch(
+            `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+            { method: 'GET' }
+            );
+            const json = await query.json();
+            const data = json.routes[0];
+            const route = data.geometry.coordinates;
+            const geojson = {
+              type: 'Feature',
+              properties: {},
+              geometry: {
+                type: 'LineString',
+                coordinates: route
+              }
+            };
+            // if the route already exists on the map, we'll reset it using setData
+            if (map.getSource('route')) {
+              map.getSource('route').setData(geojson);
             }
-          });
-        }
-        // add turn instructions here at the end
-      }
+            // otherwise, we'll make a new request
+            else {
+              map.addLayer({
+                id: 'route',
+                type: 'line',
+                source: {
+                  type: 'geojson',
+                  data: geojson
+                },
+                layout: {
+                  'line-join': 'round',
+                  'line-cap': 'round'
+                },
+                paint: {
+                  'line-color': '#3887be',
+                  'line-width': 5,
+                  'line-opacity': 0.75
+                }
+              });
+            }
+            // add turn instructions here at the end
+          }
+
+          const navStartingCoords = [position.coords.longitude, position.coords.latitude];
+          const navEndingCoords = [
+            JSON.parse(mapElement.dataset.nav)[1].lng,
+            JSON.parse(mapElement.dataset.nav)[1].lat
+          ]
+      // create a function to make a directions request
 
       map.on('load', () => {
+
         // make an initial directions request that
         // starts and ends at the same location
-        getRoute(start);
+        getRoute(navStartingCoords, navEndingCoords);
 
         // Add starting point to the map
         map.addLayer({
@@ -139,7 +144,7 @@ const initMapbox = () => {
                   properties: {},
                   geometry: {
                     type: 'Point',
-                    coordinates: start
+                    coordinates: navStartingCoords
                   }
                 }
               ]
@@ -152,13 +157,8 @@ const initMapbox = () => {
         });
         // this is where the code from the next step will go
         //On récupère la destination rentré par l'utilisateur -> navigation -> new
-        const finalDestination = document.querySelector("#finalDestination");
-        const destinationForm = document.querySelector("#new_navigation");
-        map.on('click', (event) => {
-          event.preventDefault();
-          // const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
-          // console.log(coords)
-          const coords = ["5.394641", "43.269605"]
+
+          // const coords = navEndingCoords
           const end = {
             type: 'FeatureCollection',
             features: [
@@ -167,7 +167,7 @@ const initMapbox = () => {
                 properties: {},
                 geometry: {
                   type: 'Point',
-                  coordinates: coords
+                  coordinates: navEndingCoords
                 }
               }
             ]
@@ -188,7 +188,7 @@ const initMapbox = () => {
                       properties: {},
                       geometry: {
                         type: 'Point',
-                        coordinates: coords
+                        coordinates: navEndingCoords
                       }
                     }
                   ]
@@ -200,8 +200,7 @@ const initMapbox = () => {
               }
             });
           }
-          getRoute(coords);
-        });
+          getRoute(navStartingCoords, navEndingCoords);
 
       });
 
@@ -210,10 +209,9 @@ const initMapbox = () => {
 
 
     const map = buildMap(mapElement);
-    const markers = JSON.parse(mapElement.dataset.markers);
 
-    addMarkersToMap(map, markers);
-    fitMapToMarkers(map, markers);
+    // addMarkersToMap(map, markers);
+    // fitMapToMarkers(map, markers);
     // addDirectionToMap(map);
     // printMyLocation(map);
 
