@@ -1,8 +1,9 @@
+<div class="useful-info" style="padding-top: 20px; height: 100%"><%= @nav_coords %></div>
+
 <div class="container-fluid" style="padding-top: 20px; height: 100%">
   <div id="map"
     style="width: 100%; height: 800px;"
-    data-markers="<%= @markers.to_json %>"
+    data-nav="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
 </div>
-
