@@ -60,10 +60,10 @@ urls = ['https://images.unsplash.com/photo-1576453336457-64848c4ab6e9?ixlib=rb-1
   'https://images.unsplash.com/photo-1536482252533-5c45502f7aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80',
   'https://images.unsplash.com/photo-1601441322244-90edf2e328af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80']
 
- u1 = User.create!(email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
- u2 = User.create!(email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
- u3 = User.create!(email: "illem@gmail.com", password: "123456789", password_confirmation: "123456789")
- u4 = User.create!(email: "test@journey.com", password: "123456789", password_confirmation: "123456789")
+ u1 = User.create!(name: "Erika", email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u2 = User.create!(name: "Sarah", email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u3 = User.create!(name: "Ilhem", email: "illem@gmail.com", password: "123456789", password_confirmation: "123456789")
+ u4 = User.create!(name: "Julie", email: "test@journey.com", password: "123456789", password_confirmation: "123456789")
 
 puts 'created 3 users'
 
@@ -97,7 +97,6 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
                 )
  place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
   place.save
-  p place.photo.key
 
 p1= Place.create!(name: Musée Cantini, address: 19 Rue Grignan 13006 Marseille, duration: 8 min, rating: 4, interest: culture, interior, environement: calm, sense: best sight)
 p2= Place.create!(name: Opéra de Marseille, address: 2 Rue Molière 13001 Marseille, duration: 4 min, rating: 4,4, interest: opera, interior, environment: calm, sense: amazing hearing)
@@ -109,6 +108,66 @@ p7= Place.create!(name: Basilique Notre-Dame de la Garde, address: Rue Fort du S
 p8= Place.create!(name: Palais Longchamp, address: Boulevard jardin Zoologique 13004 Marseille, duration: 33 min, rating: 4,5, interest: photography, interior, environement: sunny, sense: best sight)
 p9= Place.create!(name: Escaliers du Cours Julien, address: Rue Estelle, 13006 Marseille, duration: 12 min, rating: 4,1, interest: visual arts, exterior, environment: sunny, sense: best sight)
 p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Charité 13002 Marseille, duration: 13 min, rating: 4,4, interest: contemporary history, interior, environment: cloudy, sense: amazing hearing)
+p11 = Place.new(name: "Wonderful spices of Saladin",
+                  interest: "Cooking", "Nutrition", "Food", "Tradition",
+                  address: "10 Rue Longue des Capucins, 13001 Marseille",
+                  longitude: 5.379376,
+                  latitude: 43.295791,
+                  user_id: u2,
+                  duration: 15,
+                  rating: 5,
+                  senses: 'Best Smell',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Discover incredibkle spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+p12 = Place.new(name: "Fresh sea scents on the Old Port fish market",
+                  interest: "Food", "Tradition",
+                  address: "11 quai des Belges, 13001 Marseille",
+                  longitude: 5.374505,
+                  latitude: 43.295637,
+                  user_id: u2,
+                  duration: 25,
+                  rating: 4,
+                  senses: 'Best Sight', "Amazing Hearings", 'Best Smell',
+                  exterior: true,
+                  environment: "Windy", "Sunny",
+                  description: "Key to the city spirit, the fish market lets you experience grocery shopping the old fashion way. Listen to the stallholders screaming their offer and smell the Mediterranean sea right from the boat.")
+p13 = Place.new(name: "Coffee experience takes you back to Marseilles' Roaring Twenties",
+                  interest: "Modern history", "Food", "Tradition",
+                  address: ("56 la Canebière, 13001 MArseille"),
+                  longitude: 5.379755,
+                  latitude: 43.297111,
+                  user_id: u2,
+                  duration: 5,
+                  rating: 3,
+                  senses: 'Best Smell', 'Best Tastes',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Torréfaction Noailles was created in the 20s and preserved a sense of its original setting. Travel the time on top of tasting great quality coffee!")
+p14 = Place.new(name: "Clean body, dirty city",
+                  interest: "Tradition", "Biology",
+                  address: "Cours Julien, Marseille, Bouches-du-Rhône 13006, France",
+                  longitude: 5.369372,
+                  latitude: 43.292986,
+                  user_id: u2,
+                  duration: 30,
+                  rating: 4,
+                  senses: 'Best Smell',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Savonnerie Marseillaisse de la Licorne offers free visits of their soap manufacture, getting you through the whole process of this paradoxically traditional and world reknowed industry of Marseilles")
+p15 = Place.new(name: "Making of virtuosos",
+                  interest: "Culture", "Performing arts", "Music", "Opera",
+                  address: "10 rue de la bibliothèque, 13001 Marseille",
+                  longitude: 5.384181,
+                  latitude: 43.295378,
+                  user_id: u2,
+                  duration: 20,
+                  rating: 3,
+                  senses: "Amazing Hearings",
+                  exterior: true,
+                  environment: "Loudy",
+                  description: "This elite music school offers the secret opportunity to let you listen to amazing musical talents for free: don't try to get it, but rather walk in the nearby street where you might have a chance to hear a future classical music star, or at least the poetry of a young person training without rest.")
 
 
  puts 'created 1 place .....'
@@ -118,3 +177,5 @@ p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Cha
  puts 'created 1 step'
 end
  puts ' done seeding ......'
+
+
