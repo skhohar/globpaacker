@@ -5,6 +5,25 @@
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
+  <mapbox-gl interactive access-token="MAPBOX_API_KEY">
+
+  <mapbox-gl-control interactive position="top-right">
+
+    <style>
+      #icontrol {
+        color: #fff;
+        text-align: center;
+        background-color: rgba(10,10,10,0.5);
+      }
+    </style>
+    <div id="icontrol">
+      <div>I am a custom Control.</div>
+      <button>Click me!</button>
+    </div>
+
+  </mapbox-gl-control>
+</mapbox-gl>
+
   </div>
 </div>
 
@@ -14,7 +33,7 @@
   </div>
 
   <div class="mb-3">
-    <label for="exampleFormControlInput1" class="form-label">ENVIRONMENT</label>
+    <label for="exampleFormControlInput1" class="form-label">WHAT WEATHER IS IT?</label>
     <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Shady">
   </div>
   <div>
