@@ -12,11 +12,12 @@
 }
 
 .logotext {
-  color: rgba(black, 0.7);
+  color: rgba(black, 0.7) !important;
   font-family: 'Poiret One', cursive;
   font-weight: 800;
-  margin-top: 40px;
+  margin-top: 80px;
   font-size: 20px;
+  margin-left: 80px;
 }
 
 .navbar-brand {
