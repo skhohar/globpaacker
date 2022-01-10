@@ -7,6 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
 require 'faker'
+require "open-uri"
 
 
 puts 'cleaning DB.....'
@@ -95,8 +96,10 @@ csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
                   #environment: Place::ENVIRONMENTS.sample,
                   #description: Faker::Quote.jack_handey
                 #)
- #place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+ #(io: file, filename: 'file.png', content_type: 'image/png')
   #place.save
+
+
 
 p1= Place.new(name: "Musée Cantini",
               interest: "culture", "contemporary arts",
@@ -110,6 +113,9 @@ p1= Place.new(name: "Musée Cantini",
               exterior: false,
               environement: "calm", "windy",
               description: "It houses collections of modern and contemporary art complemented by those of the Museum of Contemporary Art in Marseille")
+url = "'https://res.cloudinary.com/drwz0yg18/image/upload/v1641831780/Marseille/Marseille%20new/musee_marseille_lovespots_cantini_05_eoacij.jpg"
+file = URI.open(url)
+p1.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p2= Place.new(name: "Opéra de Marseille",
               address: "2 Rue Molière 13001 Marseille",
               interest: "opera","culture", "theater",
@@ -122,6 +128,9 @@ p2= Place.new(name: "Opéra de Marseille",
               exterior: false,
               environment: "calm", "windy",
               description: "It is a theater located in the district of the same name, not far from the Old Port")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831758/Marseille/Marseille%20new/Ope%CC%81ra-de-Marseille-e1544270641705_mpz1pg.jpg"
+file = URI.open(url)
+p2.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p3= Place.new(name: "Palais du Pharo",
               interest: "history", "culture",
               address: "58, Boulevard Charles Livon 13007 Marseille",
@@ -134,6 +143,9 @@ p3= Place.new(name: "Palais du Pharo",
               exterior: false,
               environment: "sunny",
               description: "The Pharo Palace is a Marseille monument whose construction was ordered by Napoleon III for the Empress Eugenie in the second half of the 19th century")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831787/Marseille/Marseille%20new/depositphotos_402439410-stock-photo-the-palais-du-pharo-is_acjadm.webp"
+file = URI.open(url)
+p3.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p4= Place.new(name: "Mucem",
               interest: "arts", "contemporary arts", "culture", "sculpture",
               address: "1 Esplanade J4 13002 Marseille",
@@ -146,6 +158,9 @@ p4= Place.new(name: "Mucem",
               exterior: false,
               environment: "cloudy", "windy", "sunny",
               description: "The Mucem is a national museum under the supervision of the Ministry of Culture and devoted to the civilizations of Europe and the Mediterranean")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831743/Marseille/Marseille%20new/le-mucem-porte-dacces-sur-les-enjeux-et-traditions-de-la-mediterranee-825x460_p5x9z2.jpg"
+file = URI.open(url)
+p4.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p5= Place.new(name: "Parc Borély",
               interest: "botany", "biology", "photography", "ecology",
               address: "Avenue du Parc Borély 13008 Marseille",
@@ -158,6 +173,9 @@ p5= Place.new(name: "Parc Borély",
               sense: "amazing hearing", "best sight",
               environement: "loudy", "sunny",
               description: "Parc Borély is one of Marseille's public parks and gardens, in the Bonneveine district in the 8th arrondissement of Marseille")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831735/Marseille/Marseille%20new/chateau-borely-marseille-21-848x566_fdrpqu.jpg"
+file = URI.open(url)
+p5.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p6= Place.new(name: "Palais des Arts",
               interest: "arts", "painting", "culture", "literature",
               address: "1, place Auguste et François Carli 13006 Marseille",
@@ -170,6 +188,9 @@ p6= Place.new(name: "Palais des Arts",
               exterior: false,
               environement: "windy","cloudy",
               description: "The Palais des Arts is a Marseille monument originally built in 1864 to house the municipal library and the École des Beaux-Arts in Marseille")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831783/Marseille/Marseille%20new/c10p02_Palais-des-arts_20150701_145542_emoqaj.jpg"
+file = URI.open(url)
+p6.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p7= Place.new(name: "Basilique Notre-Dame de la Garde",
               interest: "architecture", "religion", "history",
               address: "Rue Fort du Sanctuaire 13006 Marseille",
@@ -182,6 +203,9 @@ p7= Place.new(name: "Basilique Notre-Dame de la Garde",
               exterior: false,
               environement: "calm", "windy",
               description: "The Notre-Dame-de-la-Garde basilica or more simply Notre-Dame-de-la-Garde, often nicknamed "the Good Mother", is a minor basilica of the Catholic Church dating from the 19th century. Emblem of Marseille, dedicated to Notre-Dame de la Garde (protector of Marseille with Saint Victor), it dominates the city and the Mediterranean Sea from the top of Notre-Dame-de-la-Garde hill")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831795/Marseille/Marseille%20new/photo-1630836741356-240933683544_y1sfb2.jpg"
+file = URI.open(url)
+p7.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p8= Place.new(name: "Palais Longchamp",
               interest: "photography", "architecture", "botany", "arts",
               address: "Boulevard jardin Zoologique 13004 Marseille",
@@ -194,6 +218,9 @@ p8= Place.new(name: "Palais Longchamp",
               exterior: false,
               environement: "sunny", "cloudy",
               description: "The Longchamp Palace is a neoclassical-Second Empire style water palace-water tower from the 19th century, in the Cinq-Avenues district of the 4th arrondissement of Marseille, in the Bouches-du-Rhône in Provence-Alpes-Côte d'Azur")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831755/Marseille/Marseille%20new/Muse%CC%81e_des_beaux_arts_akhrva.jpg"
+file = URI.open(url)
+p8.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p9= Place.new(name: "Escaliers du Cours Julien",
               interest: "visual arts", "photography", "drawing",
               address: "Rue Estelle, 13006 Marseille",
@@ -206,6 +233,9 @@ p9= Place.new(name: "Escaliers du Cours Julien",
               exterior: true,
               environment: "sunny", "cloudy", "loudy",
               description: "Colorful graffiti and urban art on the stairs marking the entrance to Cours Julien")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831798/Marseille/Marseille%20new/915366a866010a8ff49ab7e3ccd4e2f8_adnjfe.jpg"
+file = URI.open(url)
+p9.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p10= Place.new(name: "Centre de la Vieille Charité",
               interest: "arts", "culture", "photography", "history", "archaeology",
               address: "2 Rue de la Charité 13002 Marseille",
@@ -218,6 +248,9 @@ p10= Place.new(name: "Centre de la Vieille Charité",
               exterior: false,
               environment: "cloudy", "windy", "calm"
               description: "The Center de la Vieille Charité brings together several multi-cultural structures in Marseille: museums, associations, school, ... and offers temporary exhibitions and activities throughout the year")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831718/Marseille/Marseille%20new/vieille_charite_marseille-1_612x0_po46h9.jpg"
+file = URI.open(url)
+p10.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p11 = Place.new(name: "Wonderful spices of Saladin",
                   interest: "Cooking", "Nutrition", "Food", "Tradition",
                   address: "10 Rue Longue des Capucins, 13001 Marseille",
@@ -230,6 +263,9 @@ p11 = Place.new(name: "Wonderful spices of Saladin",
                   exterior: false,
                   environment: "Calm",
                   description: "Discover incredibkle spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831803/Marseille/Marseille%20new/saladin-epices-du-monde-boutique-marseille-all-year_nnyqz5.jpg"
+file = URI.open(url)
+p11.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p12 = Place.new(name: "Fresh sea scents on the Old Port fish market",
                   interest: "Food", "Tradition",
                   address: "11 quai des Belges, 13001 Marseille",
@@ -242,6 +278,9 @@ p12 = Place.new(name: "Fresh sea scents on the Old Port fish market",
                   exterior: true,
                   environment: "Windy", "Sunny",
                   description: "Key to the city spirit, the fish market lets you experience grocery shopping the old fashion way. Listen to the stallholders screaming their offer and smell the Mediterranean sea right from the boat.")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831805/Marseille/Marseille%20new/74321_itooft.jpg"
+file = URI.open(url)
+p12.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p13 = Place.new(name: "Coffee experience takes you back to Marseilles' Roaring Twenties",
                   interest: "Modern history", "Food", "Tradition",
                   address: ("56 la Canebière, 13001 MArseille"),
@@ -254,6 +293,9 @@ p13 = Place.new(name: "Coffee experience takes you back to Marseilles' Roaring T
                   exterior: false,
                   environment: "Calm",
                   description: "Torréfaction Noailles was created in the 20s and preserved a sense of its original setting. Travel the time on top of tasting great quality coffee!")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831808/Marseille/Marseille%20new/torrefaction-noailles-marseille-14512191980_svoto0.jpg"
+file = URI.open(url)
+p13.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p14 = Place.new(name: "Clean body, dirty city",
                   interest: "Tradition", "Biology",
                   address: "Cours Julien, Marseille, Bouches-du-Rhône 13006, France",
@@ -266,6 +308,9 @@ p14 = Place.new(name: "Clean body, dirty city",
                   exterior: false,
                   environment: "Calm",
                   description: "Savonnerie Marseillaisse de la Licorne offers free visits of their soap manufacture, getting you through the whole process of this paradoxically traditional and world reknowed industry of Marseilles")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831812/Marseille/Marseille%20new/IMG_6888_xcbtew.jpg"
+file = URI.open(url)
+p14.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p15 = Place.new(name: "Making of virtuosos",
                   interest: "Culture", "Performing arts", "Music", "Opera",
                   address: "10 rue de la bibliothèque, 13001 Marseille",
@@ -278,6 +323,9 @@ p15 = Place.new(name: "Making of virtuosos",
                   exterior: true,
                   environment: "Loudy",
                   description: "This elite music school offers the secret opportunity to let you listen to amazing musical talents for free: don't try to get it, but rather walk in the nearby street where you might have a chance to hear a future classical music star, or at least the poetry of a young person training without rest.")
+url = ""
+file = URI.open(url)
+p15.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p16= Place.new(name: "Place Castellane",
               interest: "scultpture", "culture", "photography", "history",
               address: "Place Castellane 13006 Marseille",
@@ -290,7 +338,10 @@ p16= Place.new(name: "Place Castellane",
               exterior: true,
               environment: "sunny", "cloudy", "loudy",
               description: "Road roundabout known for its 1910s fountain, featuring elaborate carvings and a marble pillar")
-p17= Place.new(name: "Ciel I Rooftop",
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831815/Marseille/Marseille%20new/castellane-marseille_ht5yyu.jpg"
+file = URI.open(url)
+p16.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p17-= Place.new(name: "Ciel I Rooftop",
               interest: "cooking", "food", "photography",
               address: "17 Rue Haxo, 13001 Marseille",
               longitude: 5.379376,
@@ -302,6 +353,24 @@ p17= Place.new(name: "Ciel I Rooftop",
               exterior: true,
               environment: "sunny", "cloudy", "loudy",
               description: "It's a rooftop restaurant in the heart of Marseille. An incredible roof terrace nestled on one of the tallest buildings in the center [the former Galeries Lafayette], which dominates the city, the entrance to the Old Port and faces the good mother!")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831818/Marseille/Marseille%20new/news_2293_tc9qhv.jpg"
+file = URI.open(url)
+p17.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p18-= Place.new(name: "Le Musée du Savon de Marseille",
+              interest: "photography", "culture",
+              address: "25 Quai de Rive Neuve, 13007 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 20,
+              rating: 4,3,
+              sense: "best sight", "best smell",
+              exterior: false,
+              environment: "sunny", "cloudy", "loudy",
+              description: "Picturesque museum with objects and demonstrations on soap making, and personalized souvenirs")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641832942/Marseille/Marseille%20new/muse%CC%81e-du-savon-de-marseille-la-licorne-marseille-all-year_zmxc6x.jpg"
+file = URI.open(url)
+p18.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p19= Place.new(name: "Cathédrale de la Major",
               interest: "architecture", "photography", "religion",
               address: "Place de la Major, 13002 Marseille",
@@ -314,7 +383,10 @@ p19= Place.new(name: "Cathédrale de la Major",
               exterior: false,
               environment: "sunny", "cloudy",
               description: "Large 19th century Neo-Byzantine cathedral with an opulent interior with murals, mosaics and marble")
- p20= Place.new(name: "Port Antique",
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831821/Marseille/Marseille%20new/14013216928_3958ea2f7c_b_ymanbo.jpg"
+file = URI.open(url)
+p19.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p20= Place.new(name: "Port Antique",
               interest: "architecture", "photography", "history", "archaeological",
               address: "2 Rue Henri Barbusse, 13001 Marseille",
               longitude: 5.379376,
@@ -326,7 +398,10 @@ p19= Place.new(name: "Cathédrale de la Major",
               exterior: true,
               environment: "sunny", "cloudy",
               description: "Small public park with archaeological remains of the Roman road and Greek fortifications of the old port")
-p22= Place.new(name: "Friche de la Belle de Mai",
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831825/Marseille/Marseille%20new/jardin-vestige-antique-centre-bourse-1400x934_p5gh0l.jpg"
+file = URI.open(url)
+p20.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+              p22= Place.new(name: "Friche de la Belle de Mai",
               interest: "photography", "history",
               address: "41 Rue Jobin, 13003 Marseille",
               longitude: 5.379376,
@@ -362,7 +437,7 @@ p27= Place.new(name: "Studio Fotokino",
               exterior: false,
               environment: "loudy", "cloudy",
               description: "The Fotokino association, created in 2000 in Marseille, is dedicated to the dissemination of artistic works in the field of visual arts")
- p28= Place.new(name: "Porte dAix",
+ p28= Place.new(name: "Porte d'Aix",
               interest: "photography", "history", "architecture",
               address: "19 Place Jules Guesde, 13003 Marseille",
               longitude: 5.379376,
@@ -374,7 +449,7 @@ p27= Place.new(name: "Studio Fotokino",
               exterior: true,
               environment: "sunny",
               description: "Triumphal arch designed by Michel-Robert Penchaud in honor of the victories of the Napoleonic wars")
-p29= Place.new(name: "Place dArmes",
+p29= Place.new(name: "Place d'Armes",
               interest: "photography", "history", "architecture",
               address: "Esplanade du Fort Saint-Jean, 13002 Marseille",
               longitude: 5.379376,
