@@ -10,5 +10,4 @@ class Navigation < ApplicationRecord
   # validates :done, presence: true
   # validates :time_deadline, presence: true
   # validates :date, presence: true
-
 end

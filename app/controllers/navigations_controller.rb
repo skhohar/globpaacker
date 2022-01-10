@@ -1,20 +1,16 @@
-
 class NavigationsController < ApplicationController
-
   before_action :set_navigation, only: :show
 
   def show
-
     @markers =
-      [ {
+      [{
         lat: @navigation.starting_longitude,
         lng: @navigation.starting_latitude
-        },
-        {
-        lat: @navigation.ending_longitude,
-        lng: @navigation.ending_latitude
-        }
-      ]
+      },
+       {
+         lat: @navigation.ending_longitude,
+         lng: @navigation.ending_latitude
+       }]
   end
 
   def new
@@ -25,7 +21,6 @@ class NavigationsController < ApplicationController
         lng: @navigation.starting_latitude
 
       ]
-
   end
 
   def itinerary_to_nextplace
@@ -55,6 +50,7 @@ class NavigationsController < ApplicationController
   end
 
   def navigation_params
-    params.require(:navigation).permit(:user_id, :place_id, :starting_longitude, :starting_latitude, :ending_longitude, :ending_latitude, :done, :time_deadline, :date)
+    params.require(:navigation).permit(:user_id, :place_id, :starting_longitude, :starting_latitude, :ending_longitude,
+                                       :ending_latitude, :done, :time_deadline, :date)
   end
 end
