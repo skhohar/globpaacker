@@ -73,41 +73,151 @@ puts 'created 1 navigation'
 
 csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
 
-CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
-  file = URI.open(urls.sample)
+#CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
+  #file = URI.open(urls.sample)
 
-  name = row["Nom du site"]
-  interest = row["Categorie"]
-  address = row["Adresse 1"] + " " + row["Code Postal"] + " " + row["Ville"]
-  longitude = row["Longitude"]
-  latitude = row["Latitude"]
+  #name = row["Nom du site"]
+  #interest = row["Categorie"]
+  #address = row["Adresse 1"] + " " + row["Code Postal"] + " " + row["Ville"]
+  #longitude = row["Longitude"]
+  #latitude = row["Latitude"]
 
-  place = Place.new(name: name,
-                  interest: Place::INTERESTS.sample(rand(1..7)),
-                  address: address,
-                  longitude: longitude,
-                  latitude: latitude,
-                  user_id: User.all.sample.id,
-                  duration: rand(30..300),
-                  rating: rand(1..5),
-                  senses: Place::SENSES.sample,
-                  exterior: false,
-                  environment: Place::ENVIRONMENTS.sample,
-                  description: Faker::Quote.jack_handey
-                )
- place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
-  place.save
+  #place = Place.new(name: name,
+                  #interest: Place::INTERESTS.sample(rand(1..7)),
+                  #address: address,
+                  #longitude: longitude,
+                  #latitude: latitude,
+                  #user_id: User.all.sample.id,
+                  #duration: rand(30..300),
+                  #rating: rand(1..5),
+                  #senses: Place::SENSES.sample,
+                  #exterior: false,
+                  #environment: Place::ENVIRONMENTS.sample,
+                  #description: Faker::Quote.jack_handey
+                #)
+ #place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+  #place.save
 
-p1= Place.create!(name: Musée Cantini, address: 19 Rue Grignan 13006 Marseille, duration: 8 min, rating: 4, interest: culture, interior, environement: calm, sense: best sight)
-p2= Place.create!(name: Opéra de Marseille, address: 2 Rue Molière 13001 Marseille, duration: 4 min, rating: 4,4, interest: opera, interior, environment: calm, sense: amazing hearing)
-p3= Place.create!(name: Palais du Pharo, address: 58, Boulevard Charles Livon 13007 Marseille, duration: 9 min, rating: 4,6), interest: history, interior, environment: sunny, sense: best sight)
-p4= Place.create!(name: Mucem, address: 1 Esplanade J4, 13002 Marseille, duration: 4 min, rating: 4,4, interest: arts, interior, environment: cloudy, sense: best sight)
-p5= Place.create!(name: Parc Borély, Avenue du Parc Borély 13008 Marseille, duration: 60 min, rating: 4,5, interest: botany, exterior, environement: loudy, sense: amazing hearing)
-p6= Place.create!(name: Palais des Arts, address: 1, place Auguste et François Carli 13006 Marseille, duration: 11 min, rating: 3,3, interest: arts, interior, environement: windy, sense: best sight)
-p7= Place.create!(name: Basilique Notre-Dame de la Garde, address: Rue Fort du Sanctuaire 13006 Marseille, duration: 26 min, rating: 4,7, interest: architecture, interior, environement: calm, sense: best sight)
-p8= Place.create!(name: Palais Longchamp, address: Boulevard jardin Zoologique 13004 Marseille, duration: 33 min, rating: 4,5, interest: photography, interior, environement: sunny, sense: best sight)
-p9= Place.create!(name: Escaliers du Cours Julien, address: Rue Estelle, 13006 Marseille, duration: 12 min, rating: 4,1, interest: visual arts, exterior, environment: sunny, sense: best sight)
-p10= Place.create!(name: Centre de la Vieille Charité, address: 2 Rue de la Charité 13002 Marseille, duration: 13 min, rating: 4,4, interest: contemporary history, interior, environment: cloudy, sense: amazing hearing)
+p1= Place.new(name: Musée Cantini,
+              interest: "culture", "contemporary arts",
+              address: "19 Rue Grignan 13006 Marseille"
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 8,
+              rating: 4,
+              sense: "best sight",
+              exterior: false,
+              environement: "calm", "windy",
+              description: "It houses collections of modern and contemporary art complemented by those of the Museum of Contemporary Art in Marseille")
+p2= Place.new(name: Opéra de Marseille,
+              address: "2 Rue Molière 13001 Marseille",
+              interest: "opera","culture", "theater",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 4,
+              rating: 4,4,
+              sense: "amazing hearing",
+              exterior: false,
+              environment: "calm", "windy",
+              description: "It is a theater located in the district of the same name, not far from the Old Port")
+p3= Place.new(name: Palais du Pharo,
+              interest: "history", "culture",
+              address: "58, Boulevard Charles Livon 13007 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 9,
+              rating: 4,6,
+              sense: "best sight",
+              exterior: false,
+              environment: "sunny",
+              description: "The Pharo Palace is a Marseille monument whose construction was ordered by Napoleon III for the Empress Eugenie in the second half of the 19th century")
+p4= Place.new(name: Mucem,
+              interest: "arts", "contemporary arts", "culture", "sculpture",
+              address: "1 Esplanade J4 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 4,
+              rating: 4,4,
+              sense: "best sight",
+              exterior: false,
+              environment: "cloudy", "windy", "sunny",
+              description: "The Mucem is a national museum under the supervision of the Ministry of Culture and devoted to the civilizations of Europe and the Mediterranean")
+p5= Place.new(name: Parc Borély,
+              interest: "botany", "biology", "photography", "ecology",
+              address: "Avenue du Parc Borély 13008 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 60,
+              rating: 4,5,
+              exterior: true,
+              sense: "amazing hearing", "best sight",
+              environement: "loudy", "sunny",
+              description: "Parc Borély is one of Marseille's public parks and gardens, in the Bonneveine district in the 8th arrondissement of Marseille")
+p6= Place.new(name: Palais des Arts,
+              interest: "arts", "painting", "culture", "literature",
+              address: "1, place Auguste et François Carli 13006 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 11,
+              rating: 3,3,
+              sense: "best sight",
+              exterior: false,
+              environement: "windy","cloudy",
+              description: "The Palais des Arts is a Marseille monument originally built in 1864 to house the municipal library and the École des Beaux-Arts in Marseille")
+p7= Place.new(name: Basilique Notre-Dame de la Garde,
+              interest: "architecture", "religion", "history",
+              address: "Rue Fort du Sanctuaire 13006 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 26,
+              rating: 4,7,
+              sense: "best sight",
+              exterior: false,
+              environement: "calm", "windy",
+              description: "The Notre-Dame-de-la-Garde basilica or more simply Notre-Dame-de-la-Garde, often nicknamed "the Good Mother", is a minor basilica of the Catholic Church dating from the 19th century. Emblem of Marseille, dedicated to Notre-Dame de la Garde (protector of Marseille with Saint Victor), it dominates the city and the Mediterranean Sea from the top of Notre-Dame-de-la-Garde hill")
+p8= Place.new(name: Palais Longchamp,
+              interest: "photography", "architecture", "botany", "arts",
+              address: "Boulevard jardin Zoologique 13004 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 33,
+              rating: 4,5,
+              sense: "best sight",
+              exterior: false,
+              environement: "sunny", "cloudy",
+              description: "The Longchamp Palace is a neoclassical-Second Empire style water palace-water tower from the 19th century, in the Cinq-Avenues district of the 4th arrondissement of Marseille, in the Bouches-du-Rhône in Provence-Alpes-Côte d'Azur")
+p9= Place.new(name: Escaliers du Cours Julien,
+              interest: "visual arts", "photography", "drawing",
+              address: "Rue Estelle, 13006 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 12,
+              rating: 4,1,
+              sense: "best sight",
+              exterior: true,
+              environment: "sunny", "cloudy", "loudy",
+              description: "Colorful graffiti and urban art on the stairs marking the entrance to Cours Julien")
+p10= Place.new(name: Centre de la Vieille Charité,
+              interest: "arts", "culture", "photography", "history", "archaeology",
+              address: "2 Rue de la Charité 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 13,
+              rating: 4,4,
+              sense: "amazing hearing", "best sight",
+              exterior: false,
+              environment: "cloudy", "windy", "calm"
+              description: "The Center de la Vieille Charité brings together several multi-cultural structures in Marseille: museums, associations, school, ... and offers temporary exhibitions and activities throughout the year")
 p11 = Place.new(name: "Wonderful spices of Saladin",
                   interest: "Cooking", "Nutrition", "Food", "Tradition",
                   address: "10 Rue Longue des Capucins, 13001 Marseille",
@@ -168,6 +278,140 @@ p15 = Place.new(name: "Making of virtuosos",
                   exterior: true,
                   environment: "Loudy",
                   description: "This elite music school offers the secret opportunity to let you listen to amazing musical talents for free: don't try to get it, but rather walk in the nearby street where you might have a chance to hear a future classical music star, or at least the poetry of a young person training without rest.")
+p16= Place.new(name: Place Castellane,
+              interest: "scultpture", "culture", "photography", "history",
+              address: "Place Castellane 13006 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 32,
+              rating: 4,1,
+              sense: "amazing hearing", "best sight",
+              exterior: true,
+              environment: "sunny", "cloudy", "loudy",
+              description: "Road roundabout known for its 1910s fountain, featuring elaborate carvings and a marble pillar")
+p17= Place.new(name: Ciel I Rooftop,
+              interest: "cooking", "food", "photography",
+              address: "17 Rue Haxo, 13001 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 3,
+              rating: 4,2,
+              sense: "best sight", "best smell", "best tastes",
+              exterior: true,
+              environment: "sunny", "cloudy", "loudy",
+              description: "It's a rooftop restaurant in the heart of Marseille. An incredible roof terrace nestled on one of the tallest buildings in the center [the former Galeries Lafayette], which dominates the city, the entrance to the Old Port and faces the good mother!")
+p19= Place.new(name: Cathédrale de la Major,
+              interest: "architecture", "photography", "religion",
+              address: "Place de la Major, 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 23,
+              rating: 4,6,
+              sense: "best sight", "calm",
+              exterior: false,
+              environment: "sunny", "cloudy",
+              description: "Large 19th century Neo-Byzantine cathedral with an opulent interior with murals, mosaics and marble")
+ p20= Place.new(name: Port Antique,
+              interest: "architecture", "photography", "history", "archaeological",
+              address: "2 Rue Henri Barbusse, 13001 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 11,
+              rating: 4,3,
+              sense: "best sight",
+              exterior: true,
+              environment: "sunny", "cloudy",
+              description: "Small public park with archaeological remains of the Roman road and Greek fortifications of the old port")
+p22= Place.new(name: Friche de la Belle de Mai,
+              interest: "photography", "history",
+              address: "41 Rue Jobin, 13003 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 19,
+              rating: 4,5,
+              sense: "best sight","amazing hearings"
+              exterior: true,
+              environment: "loudy", "sunny",
+              description: "Place of creation with artistic shows, concerts and exhibitions in a former tobacco factory")
+p24= Place.new(name: Abbaye Saint-Victor,
+              interest: "visual arts", "photography", "performin arts", "music",
+              address: "Place Saint Victor, 13007 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 24,
+              rating: 4,4,
+              sense: "best sight",
+              exterior: false,
+              environment: "loudy", "sunny",
+              description: "Fortified abbey founded by Saint Cassien and built above the 5th crypt housing its sarcophagus")
+p27= Place.new(name: Studio Fotokino,
+              interest: "visual arts", "painting", "photography",
+              address: "33 Allée Léon Gambetta, 13001 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 9,
+              rating: 4,5,
+              sense: "best sight",
+              exterior: false,
+              environment: "loudy", "cloudy",
+              description: "The Fotokino association, created in 2000 in Marseille, is dedicated to the dissemination of artistic works in the field of visual arts")
+ p28= Place.new(name: Porte dAix,
+              interest: "photography", "history", "architecture",
+              address: "19 Place Jules Guesde, 13003 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 6,
+              rating: 3,9,
+              sense: "best sight",
+              exterior: true,
+              environment: "sunny",
+              description: "Triumphal arch designed by Michel-Robert Penchaud in honor of the victories of the Napoleonic wars")
+p29= Place.new(name: Place dArmes,
+              interest: "photography", "history", "architecture",
+              address: "Esplanade du Fort Saint-Jean, 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 23,
+              rating: 4,6,
+              sense: "best sight", "amazing hearings",
+              exterior: true,
+              environment: "sunny",
+              description: "With its village, gardens and countless little secrets, Fort Saint-Jean is a joyful labyrinth")
+p30= Place.new(name: La Maison Diamantée,
+              interest: "photography", "history", "architecture",
+              address: "3 Rue de la Prison, 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 16,
+              rating: 4,1,
+              sense: "best sight",
+              exterior: true,
+              environment: "sunny",
+              description: "The Diamantée house is a building in Marseille located just behind the town hall, in the town hall district. It owes its name to the appearance of its facade, which is covered with stone cut in points: prismatic bosses.")
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
  puts 'created 1 place .....'
@@ -177,5 +421,3 @@ p15 = Place.new(name: "Making of virtuosos",
  puts 'created 1 step'
 end
  puts ' done seeding ......'
-
-
