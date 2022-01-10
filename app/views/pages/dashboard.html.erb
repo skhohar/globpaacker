@@ -1,3 +1,47 @@
-<div class="container d-grid gap-1 col-12">
-<p> Hi, this is the dashboard --- To be completed 😊 ---- </p>
+
+<div class="photo-dash container d-grid gap-1 col-12">
+  <div class="container-fluid" style="padding-top: 20px;">
+    <h1 style ="padding-bottom:10px">Hello <%= @user.name %></h1>
+    <div class="dash-card cardstyle">
+      <p class="dash-card-title">ABOUT YOU</p>
+      <div class="dash-card-text">
+        <p> Your email: <%= @user.email %> </p>
+        <div class="btn btn-secondary"> <%= link_to "update", new_user_registration_path, :method => :edit %> </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="places_wrap">
+      <div class="dash-card cardstyle">
+        <p class="dash-card-title"> PLACES YOU CREATED </p>
+          <div class="dash-card-text">
+            <% if @user.places.empty? %>
+                <p> You never created a place yet </p>
+                    <%= link_to new_places_path do %>
+                       <button class="btn-journey-customization mx-auto"><strong>Create a new Place</strong></button>
+                    <% end %>
+            <% else %>
+                <% @user.places.each do |place| %>
+                  <% if @user.id == place.user_id %>
+                    <div class="place_card">
+                      <p class="title"><%= place.name.upcase %></p>
+                      <p> Adress: <%= place.address %></p>
+                      <p><%= place.duration %> | <%= place.exterior? ? "Exterior" : "Interior" %> | <%= place.senses %> | <%= place.interest %> |  Rating: <%= place.rating %></p>
+                      <p> Description: <%= place.description %></p>
+
+                   <%= link_to place_path(place), method: :delete do %>
+                      <div class="btn btn-secondary">
+                          <p id="destroy" > destroy this place </p>
+                      </div>
+                      <% end %>
+                    </div>
+
+                  <% end %>
+                <% end %>
+            <% end %>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
+

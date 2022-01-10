@@ -1,5 +1,4 @@
 // Setup
-
 *,
 ::before,
 ::after {
@@ -12,7 +11,6 @@
 
 $background: #fffffe;
 $headline: #fffffe;
-$paragraph: #b2cfc7;
 $button: #fffffe;
 $button_text: #001e1d;
 
@@ -25,17 +23,21 @@ $tertiary: #e16162;
 // Les Fonts de l'application :
 
 @import url("https://fonts.googleapis.com/css?family=Nunito:400,700|Work+Sans:400,700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
 
 // Define fonts for body and headers
-$body-font: "Work Sans", "Helvetica", "sans-serif";
-$headers-font: "Nunito", "Helvetica", "sans-serif";
+$body-font: 'Poiret One', "cursive";
+$headers-font:  'Poiret One', "cursive";
 
 // Les Balises générales :
 
 body {
   background-color: $background;
 }
-
+label, input, select {
+  font-family: 'Poiret One', "cursive";
+  font-weight: bolder;
+}
 h1,
 h2,
 h3,
@@ -44,7 +46,6 @@ h5,
 h6,
 p,
 a {
-  color: $paragraph;
   text-decoration: none;
 }
 
