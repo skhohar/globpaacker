@@ -2,19 +2,22 @@
   justify-content: space-between;
   background: white;
   border-bottom: 1px solid #000;
+  background-color: #9fd4dbfa;
 }
 
 
 .navbar-lewagon .navbar-brand img {
-  width: 40px;
-  height: auto;
+  width: 80px;
+  height: 4em;
 }
 
 .logotext {
-  color: rgba(black, 0.7);
+  color: rgba(black, 0.7) !important;
   font-family: 'Poiret One', cursive;
-  font-weight: 600;
-  margin-top: 10px;
+  font-weight: 800;
+  margin-top: 40px;
+  font-size: 20px;
+  margin-left: 10px;
 }
 
 .navbar-brand {
@@ -28,6 +31,7 @@
   color: rgba(black, 0.7);
   border: 1px solid rgba(black, 0.7);
   background-color: $button;
+  background-color: #eaf0f1;
 }
 
 .btn-journey-customization:hover {

@@ -1,4 +1,7 @@
 class PlacesController < ApplicationController
+  def new
+    @place = Place.new
+  end
 
   def show
     @navigation = Navigation.find(params[:step][:navigation_id])
@@ -20,16 +23,17 @@ class PlacesController < ApplicationController
     flash[:notice] = 'Something is missing'
     render :new
   end
- end
 
- def destroy
-  @place.destroy
+  def destroy
+    @place = Place.find(params[:id])
+    @place.destroy
     redirect_to dashboard_path, notice: 'The place was successfully destroyed.'
- end
+  end
 
- private
+  private
 
   def place_params
-    params.require(:place).permit(:name, :photo, :address, :duration, :description, :exterior, :interest, :senses, :environment, :rating)
+    params.require(:place).permit(:name, :photo, :address, :duration, :description, :exterior, :interest, :senses,
+                                  :environment, :rating)
   end
 end
