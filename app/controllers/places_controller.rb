@@ -10,7 +10,7 @@ class PlacesController < ApplicationController
  end
 
  def create
-  @place = Place.new(place_params)
+   @place = Place.new(place_params)
   @place.user = current_user
     if @place.save
       redirect_to dashboard_path notice: "You successfully create a new place"
@@ -18,7 +18,7 @@ class PlacesController < ApplicationController
       flash[:notice] = 'Something is missing'
       render :new
     end
-  end
+ end
 
   def destroy
     @place = Place.find(params[:id])
@@ -29,7 +29,6 @@ class PlacesController < ApplicationController
   private
 
   def place_params
-    params.require(:place).permit(:name, :photo, :address, :duration, :description, :exterior, :interest, :senses,
-                                  :environment, :rating)
+    params.require(:place).permit(:name, :photo, :address, :duration, :description, :exterior, :interest, :senses, :environment, :rating)
   end
 end
