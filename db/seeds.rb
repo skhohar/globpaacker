@@ -95,15 +95,78 @@ CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
                   environment: Place::ENVIRONMENTS.sample,
                   description: Faker::Quote.jack_handey
                 )
- place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')             
+ place.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
   place.save
   p place.photo.key
 
  puts 'created 1 place .....'
 
  step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
- 
+
  puts 'created 1 step'
 end
  puts ' done seeding ......'
 
+
+# This are places from skh:
+
+place21 = Place.new(name: "Wonderful spices of Saladin",
+                  interest: "Cooking", "Nutrition", "Food", "Tradition",
+                  address: "10 Rue Longue des Capucins, 13001 Marseille",
+                  longitude: 5.379376,
+                  latitude: 43.295791,
+                  user_id: u2,
+                  duration: 15,
+                  rating: 5,
+                  senses: 'Best Smell',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Discover incredibkle spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+place22 = Place.new(name: "Fresh sea scents on the Old Port fish market",
+                  interest: "Food", "Tradition",
+                  address: "11 quai des Belges, 13001 Marseille",
+                  longitude: 5.374505,
+                  latitude: 43.295637,
+                  user_id: u2,
+                  duration: 25,
+                  rating: 4,
+                  senses: 'Best Sight', "Amazing Hearings", 'Best Smell',
+                  exterior: true,
+                  environment: "Windy", "Sunny",
+                  description: "Key to the city spirit, the fish market lets you experience grocery shopping the old fashion way. Listen to the stallholders screaming their offer and smell the Mediterranean sea right from the boat.")
+place23 = Place.new(name: "Coffee experience takes you back to Marseilles' Roaring Twenties",
+                  interest: "Modern history", "Food", "Tradition",
+                  address: ("56 la Canebière, 13001 MArseille"),
+                  longitude: 5.379755,
+                  latitude: 43.297111,
+                  user_id: u2,
+                  duration: 5,
+                  rating: 3,
+                  senses: 'Best Smell', 'Best Tastes',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Torréfaction Noailles was created in the 20s and preserved a sense of its original setting. Travel the time on top of tasting great quality coffee!")
+place24 = Place.new(name: "Clean body, dirty city",
+                  interest: "Tradition", "Biology",
+                  address: "Cours Julien, Marseille, Bouches-du-Rhône 13006, France",
+                  longitude: 5.369372,
+                  latitude: 43.292986,
+                  user_id: u2,
+                  duration: 30,
+                  rating: 4,
+                  senses: 'Best Smell',
+                  exterior: false,
+                  environment: "Calm",
+                  description: "Savonnerie Marseillaisse de la Licorne offers free visits of their soap manufacture, getting you through the whole process of this paradoxically traditional and world reknowed industry of Marseilles")
+place25 = Place.new(name: "Making of virtuosos",
+                  interest: "Culture", "Performing arts", "Music", "Opera",
+                  address: "10 rue de la bibliothèque, 13001 Marseille",
+                  longitude: 5.384181,
+                  latitude: 43.295378,
+                  user_id: u2,
+                  duration: 20,
+                  rating: 3,
+                  senses: "Amazing Hearings",
+                  exterior: true,
+                  environment: "Loudy",
+                  description: "This elite music school offers the secret opportunity to let you listen to amazing musical talents for free: don't try to get it, but rather walk in the nearby street where you might have a chance to hear a future classical music star, or at least the poetry of a young person training without rest.")
