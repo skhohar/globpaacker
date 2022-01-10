@@ -1,7 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users, controllers: {
-    registrations: 'users/registrations'
-  }
+  devise_for :users
   root to: "pages#home"
   get '/dashboard', to: 'pages#dashboard'
   get '/direction-test', to: 'pages#direction-test'
