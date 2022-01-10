@@ -21,10 +21,11 @@
         accessToken: mapboxgl.accessToken
       });
 
-      map.addControl(directions,'top-left');
+      map.addControl(
+      new MapboxDirections({
+      accessToken: mapboxgl.accessToken
+      }),
+      'top-left'
+      );
 
-      map.on('load',  function() {
-      directions.setOrigin([12, 23]); // can be address in form setOrigin("12, Elm Street, NY")
-      directions.setDestinaion([11, 22]); // can be address
-      })
     </script>
