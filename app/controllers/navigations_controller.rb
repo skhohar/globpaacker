@@ -4,8 +4,8 @@ class NavigationsController < ApplicationController
   def show
     @markers =
       [{
-        lat: @navigation.starting_latitude,
-        lng: @navigation.starting_longitude
+        lat: @navigation.start.latitude,
+        lng: @navigation.start.longitude
       },
        {
          lat: @navigation.ending_latitude,

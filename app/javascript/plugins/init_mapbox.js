@@ -37,11 +37,11 @@ const getMyPosition = (map) => {
     const crd = pos.coords;
     const myCoordArray = [];
 
-    console.log('Votre position actuelle est :');
-    console.log(crd)
-    console.log(`Latitude : ${crd.latitude}`);
-    console.log(`Longitude : ${crd.longitude}`);
-    console.log(`La précision est de ${crd.accuracy} mètres.`);
+    // console.log('Votre position actuelle est :');
+    // console.log(crd)
+    // console.log(`Latitude : ${crd.latitude}`);
+    // console.log(`Longitude : ${crd.longitude}`);
+    // console.log(`La précision est de ${crd.accuracy} mètres.`);
     return myCoordArray.push(crd.longitude, crd.latitude)
   }
 
@@ -57,7 +57,7 @@ const initMapbox = () => {
 
 
   if (mapElement) { // only build a map if there's a div#map to inject into
-    console.log("geoloc")
+    // console.log("geoloc")
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
     navigator.geolocation.getCurrentPosition(position => {
       const map = new mapboxgl.Map({
@@ -158,7 +158,7 @@ const initMapbox = () => {
           event.preventDefault();
           // const coords = Object.keys(event.lngLat).map((key) => event.lngLat[key]);
           // console.log(coords)
-          const coords = ["5.394641", "43.269605"]
+          const coords = ["5.380836822272784", "43.30307739635751"]
           const end = {
             type: 'FeatureCollection',
             features: [

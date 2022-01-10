@@ -1,3 +1,12 @@
-<%= simple_form_for(navigation) do |f| %>
-  <%= f.input :time_deadline, as: :datetime, html5: true %>
-<% end %>
+  <%= simple_form_for(navigation) do |f| %>
+<div class="mb-3">
+  <%= f.input :time_deadline, as: :datetime, html5: true, :label => "ARRIVAL DATE AND TIME" %>
+  <%= f.input :ending_address, placeholder: "Address of your final destination", :label => "DESTINATION" %>
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">WHAT IS THE WEATHER TODAY ?</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Shady">
+</div>
+<span style="display:block; height: 20px;"></span>
+<%= f.submit %>
+  <% end %>
