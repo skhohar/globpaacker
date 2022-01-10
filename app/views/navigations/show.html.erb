@@ -3,29 +3,6 @@
     style="width: 100%; height: 800px;"
     data-markers="<%= @markers.to_json %>"
     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
-
-
   </div>
 </div>
 
-    <script>
-      mapboxgl.accessToken = 'pk.eyJ1Ijoic2lta2FseiIsImEiOiJja3kwYjMzZXUwMWJhMnFvYWpmZ25iZ2FmIn0.IJj7GAHB1_fNJdkBMM1BXg';
-      const map = new mapboxgl.Map({
-      container: 'map',
-      style: 'mapbox://styles/mapbox/streets-v11',
-      center: [5.373907, 43.294522],
-      zoom: 15
-      });
-
-      var directions = new MapboxDirections({
-        accessToken: mapboxgl.accessToken
-      });
-
-      map.addControl(
-      new MapboxDirections({
-      accessToken: mapboxgl.accessToken
-      }),
-      'top-left'
-      );
-
-    </script>
