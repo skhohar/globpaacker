@@ -3,16 +3,23 @@
     <%= image_tag("logo.png") %>
   </div>
   <div class="two-buttons">
-  <%= link_to new_navigation_path do %>
-    <button type="button" id="start-but">START</button>
+    <%= link_to new_navigation_path do %>
+      <button type="button" id="start-but">START</button>
     <% end %>
     <%= link_to new_user_session_path do %>
-    <button type="button" class="login-but"> LOG IN</button>
-    <% end %>
+      <% if user_signed_in? %>
+        <%= link_to destroy_user_session_path, method: :delete do %>
+          <button type="button" class="login-but"> LOG OUT </button>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path do %>
+          <button type="button" class="login-but"> LOG IN</button>
+        <% end %>
+      <% end %>
+      <% end %>
   </div>
   <div class="text">
-    <p class="home"> ENJOY YOURSELF WHILE YOU HAVE TIME </p>
+      <p class="home"> ENJOY YOURSELF WHILE YOU HAVE TIME </p>
   </div>
-
 </div>
 
