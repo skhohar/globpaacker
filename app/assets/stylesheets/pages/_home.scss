@@ -8,7 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-top: 5.2rem;
+  padding-top: 10rem;
 }
 
 img {
@@ -18,11 +18,11 @@ img {
 
 p {
   font-size: 20px;
-  color: #eaf0f1;
+  color: #eaf0f1 !important;
   font-weight: bold;
   position: absolute;
   bottom: 30px;
-  left: 10px;
+  left: 20px !important;
   }
 
 .two-buttons {
@@ -38,7 +38,8 @@ p {
   border-radius: 10px !important;
 }
 
-button { padding: 0.5em;
+button { 
+  padding: 0.5em;
  
 }
 
