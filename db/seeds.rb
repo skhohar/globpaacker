@@ -18,48 +18,36 @@ User.destroy_all
 
 puts "seeding"
 
-urls = ['https://images.unsplash.com/photo-1576453336457-64848c4ab6e9?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2970&q=80',
-  'https://images.unsplash.com/photo-1615693128203-3b3656d8e852?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1374&q=80',
-  'https://images.unsplash.com/photo-1576924593291-95a57fba5c7d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NTF8fG1hcnNlaWxsZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-  'https://www.opera-online.com/media/images/picture/article/0000/0935/5176/xl_opera-de-marseille-saison-2019-2020.jpg?1556291209',
-  'https://www.pagesjaunes.fr/media/resto/cinema_chambord_OSD07949060-66186.jpeg',
-  'https://media.tacdn.com/media/attractions-splice-spp-674x446/0b/39/ad/6b.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmjLDgLJd7TxXiwIax_2wcp9oaxcB6T1YD5g&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIx0FY837eYQ9xri3OfTkyZrw8CcD1TaP51g&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTYB2ZF26umwuCWQ3_xxKwKpFHK1tZqxh8ZqA&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSVfrj2FFxqtNXUS-fhdsg8cQe8xOg9iaOiow&usqp=CAU',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4_CDhg-dngV53zdSLfVkpVTCPObXnMKQqbg&usqp=CAU',
-  'https://cdn.radiofrance.fr/s3/cruiser-production/2019/09/c22967bf-191d-457d-83fb-6282f3c34e6f/1136_dscf6283.jpg',
-  'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhrvTdbplLxoH9rPrbL6A59adnOkNbjx3nrw&usqp=CAU',
-  'https://images.unsplash.com/photo-1613828802410-edbb5e3402d3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8bWFyc2VpbGxlJTIwcXVlZXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=900&q=60',
-  'https://images.unsplash.com/photo-1596491516432-b911a64808c2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-  'https://images.unsplash.com/photo-1636982180754-0b9e5183849e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1637512445331-ba3d6af7957b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1631628489767-889fcd886a9f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1566462588212-17e1bcf05f44?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1566943024213-6f6caf67f558?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1519110466169-102db60f74d5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1616533884200-dddbf9e3193f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80',
-  'https://images.unsplash.com/photo-1519110641722-0437c3a06d6f?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1576169797924-abffc61226a5?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1621187168536-0c2551d8c975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2836&q=80',
-  'https://images.unsplash.com/photo-1590261460879-2bd70850e303?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1548&q=80',
-  'https://images.unsplash.com/photo-1566840467174-c43e9c4b9a2e?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1590426058378-0cb1b9e20727?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-  'https://images.unsplash.com/photo-1629635771780-4bc960336c4b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1518506020915-f4b91133f60c?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1637871220003-d3556c98f237?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1601920448992-f3abea135411?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
-  'https://images.unsplash.com/photo-1566840601924-07789e0ad0b0?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1614979504528-5d0dbaa092ba?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1740&q=80',
-  'https://images.unsplash.com/photo-1601921845322-f29d1715129d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
-  'https://images.unsplash.com/photo-1601921845314-80ee27e006f8?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=627&q=80',
-  'https://images.unsplash.com/photo-1589229672456-0c6b70055b8a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1613234073279-4c9c1b049d90?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1748&q=80',
-  'https://images.unsplash.com/photo-1567017497423-2de680cc04b2?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1533376050980-236257b0b66a?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=774&q=80',
-  'https://images.unsplash.com/photo-1536482252533-5c45502f7aa3?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1160&q=80',
-  'https://images.unsplash.com/photo-1601441322244-90edf2e328af?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1742&q=80']
+urls = [https://res.cloudinary.com/drwz0yg18/image/upload/v1641847771/Marseille/Marseille%20new/eglise-saint-laurent-marseille_u3olga.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641847115/Marseille/Marseille%20new/theatre-du-gymnase-a-marseille-37982520_nw5hws.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641846708/Marseille/Marseille%20new/love-spots_jardin-puget_05_nll0s9.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641832942/Marseille/Marseille%20new/muse%CC%81e-du-savon-de-marseille-la-licorne-marseille-all-year_zmxc6x.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831842/Marseille/Marseille%20new/Maison_Diamante%CC%81e__3x2_crop_hjjmsc.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831838/Marseille/Marseille%20new/1680x817_nlaahk.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831834/Marseille/Marseille%20new/Porte_d_Aix_Marseille_jaow5s.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831831/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_8_dqwake.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831828/Marseille/Marseille%20new/abbaye-saint-victorjorengo2-1920x960_nrwzxj.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831825/Marseille/Marseille%20new/jardin-vestige-antique-centre-bourse-1400x934_p5gh0l.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831821/Marseille/Marseille%20new/14013216928_3958ea2f7c_b_ymanbo.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831818/Marseille/Marseille%20new/news_2293_tc9qhv.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831815/Marseille/Marseille%20new/castellane-marseille_ht5yyu.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831812/Marseille/Marseille%20new/IMG_6888_xcbtew.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831808/Marseille/Marseille%20new/torrefaction-noailles-marseille-14512191980_svoto0.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831805/Marseille/Marseille%20new/74321_itooft.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831803/Marseille/Marseille%20new/saladin-epices-du-monde-boutique-marseille-all-year_nnyqz5.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831798/Marseille/Marseille%20new/915366a866010a8ff49ab7e3ccd4e2f8_adnjfe.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831795/Marseille/Marseille%20new/photo-1630836741356-240933683544_y1sfb2.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831787/Marseille/Marseille%20new/depositphotos_402439410-stock-photo-the-palais-du-pharo-is_acjadm.webp,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831783/Marseille/Marseille%20new/c10p02_Palais-des-arts_20150701_145542_emoqaj.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831780/Marseille/Marseille%20new/musee_marseille_lovespots_cantini_05_eoacij.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831764/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_um7lvs.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831758/Marseille/Marseille%20new/Ope%CC%81ra-de-Marseille-e1544270641705_mpz1pg.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641848739/Marseille/Marseille%20new/palais-longchamp-leotcm-1920x960_bi9huy.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831743/Marseille/Marseille%20new/le-mucem-porte-dacces-sur-les-enjeux-et-traditions-de-la-mediterranee-825x460_p5x9z2.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831739/Marseille/Marseille%20new/la-crie%CC%81e-the%CC%81a%CC%82tre-national-de-marseille_x3cd8a.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831735/Marseille/Marseille%20new/chateau-borely-marseille-21-848x566_fdrpqu.jpg,
+https://res.cloudinary.com/drwz0yg18/image/upload/v1641831718/Marseille/Marseille%20new/vieille_charite_marseille-1_612x0_po46h9.jpg
+]
 
  u1 = User.create!(name: "Erika", email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
  u2 = User.create!(name: "Sarah", email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
@@ -218,7 +206,7 @@ p8= Place.new(name: "Palais Longchamp",
               exterior: false,
               environement: "sunny", "cloudy",
               description: "The Longchamp Palace is a neoclassical-Second Empire style water palace-water tower from the 19th century, in the Cinq-Avenues district of the 4th arrondissement of Marseille, in the Bouches-du-Rhône in Provence-Alpes-Côte d'Azur")
-url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831755/Marseille/Marseille%20new/Muse%CC%81e_des_beaux_arts_akhrva.jpg"
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641848739/Marseille/Marseille%20new/palais-longchamp-leotcm-1920x960_bi9huy.jpg"
 file = URI.open(url)
 p8.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p9= Place.new(name: "Escaliers du Cours Julien",
@@ -401,7 +389,22 @@ p20= Place.new(name: "Port Antique",
 url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831825/Marseille/Marseille%20new/jardin-vestige-antique-centre-bourse-1400x934_p5gh0l.jpg"
 file = URI.open(url)
 p20.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
-              p22= Place.new(name: "Friche de la Belle de Mai",
+p21= Place.new(name: "Eglise Saint Laurent",
+              interest: "history", "religion",
+              address: "16 Esplanade de la Tourette, 13002 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 20,
+              rating: 4,3,
+              sense: "best sight",
+              exterior: false,
+              environment: "sunny", "windy", "cloudy",
+              description: "Historic Catholic Church with simple and refined architecture, with panoramic view from the hill.")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641847771/Marseille/Marseille%20new/eglise-saint-laurent-marseille_u3olga.jpg"
+file = URI.open(url)
+p21.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p22= Place.new(name: "Friche de la Belle de Mai",
               interest: "photography", "history",
               address: "41 Rue Jobin, 13003 Marseille",
               longitude: 5.379376,
@@ -409,12 +412,30 @@ p20.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
               user_id: u3,
               duration: 19,
               rating: 4,5,
-              sense: "best sight","amazing hearings"
+              sense: "best sight","amazing hearings",
               exterior: true,
               environment: "loudy", "sunny",
               description: "Place of creation with artistic shows, concerts and exhibitions in a former tobacco factory")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831722/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_bdayyg.jpg"
+file = URI.open(url)
+p22.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p23= Place.new(name: "Théâtre La Criée",
+              interest: "performing arts",
+              address: "30 Quai Rive Neuve, 13007 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 24,
+              rating: 4,4,
+              sense: "best sight",
+              exterior: false,
+              environment: "loudy", "cloudy", "windy"
+              description: "National drama center with a large glass roof, with exhibitions in the hall and eclectic programming")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831739/Marseille/Marseille%20new/la-crie%CC%81e-the%CC%81a%CC%82tre-national-de-marseille_x3cd8a.jpg"
+file = URI.open(url)
+p23.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p24= Place.new(name: "Abbaye Saint-Victor",
-              interest: "visual arts", "photography", "performin arts", "music",
+              interest: "architecture", "photography", "history",
               address: "Place Saint Victor, 13007 Marseille",
               longitude: 5.379376,
               latitude: 43.295791,
@@ -425,6 +446,39 @@ p24= Place.new(name: "Abbaye Saint-Victor",
               exterior: false,
               environment: "loudy", "sunny",
               description: "Fortified abbey founded by Saint Cassien and built above the 5th crypt housing its sarcophagus")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831828/Marseille/Marseille%20new/abbaye-saint-victorjorengo2-1920x960_nrwzxj.jpg"
+file = URI.open(url)
+p24.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p25= Place.new(name: "Parc de la Colline Puget",
+              interest: "photography", "botany",
+              address: "25 Boulevard de la Corderie, 13007 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 26,
+              rating: 4,3,
+              sense: "best sight",
+              exterior: true,
+              environment: "sunny",
+              description: "City park with children's play area")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641846708/Marseille/Marseille%20new/love-spots_jardin-puget_05_nll0s9.jpg"
+file = URI.open(url)
+p25.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+p26= Place.new(name: "Théâtre du Gymnase",
+              interest: "performing arts", "danse",
+              address: "4 Rue du Théâtre Français, 13001 Marseille",
+              longitude: 5.379376,
+              latitude: 43.295791,
+              user_id: u3,
+              duration: 10,
+              rating: 4,3,
+              sense: "best sight",
+              exterior: false,
+              environment: "cloudy", "windy",
+              description: "Renovated in the 1980s, this Italian-style theater, founded in 1804, offers a varied program.")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641847115/Marseille/Marseille%20new/theatre-du-gymnase-a-marseille-37982520_nw5hws.jpg"
+file = URI.open(url)
+p26.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p27= Place.new(name: "Studio Fotokino",
               interest: "visual arts", "painting", "photography",
               address: "33 Allée Léon Gambetta, 13001 Marseille",
@@ -437,7 +491,10 @@ p27= Place.new(name: "Studio Fotokino",
               exterior: false,
               environment: "loudy", "cloudy",
               description: "The Fotokino association, created in 2000 in Marseille, is dedicated to the dissemination of artistic works in the field of visual arts")
- p28= Place.new(name: "Porte d'Aix",
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831831/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_8_dqwake.jpg"
+file = URI.open(url)
+p27.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
+28= Place.new(name: "Porte d'Aix",
               interest: "photography", "history", "architecture",
               address: "19 Place Jules Guesde, 13003 Marseille",
               longitude: 5.379376,
@@ -449,6 +506,9 @@ p27= Place.new(name: "Studio Fotokino",
               exterior: true,
               environment: "sunny",
               description: "Triumphal arch designed by Michel-Robert Penchaud in honor of the victories of the Napoleonic wars")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831834/Marseille/Marseille%20new/Porte_d_Aix_Marseille_jaow5s.jpg"
+file = URI.open(url)
+p28.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p29= Place.new(name: "Place d'Armes",
               interest: "photography", "history", "architecture",
               address: "Esplanade du Fort Saint-Jean, 13002 Marseille",
@@ -461,6 +521,9 @@ p29= Place.new(name: "Place d'Armes",
               exterior: true,
               environment: "sunny",
               description: "With its village, gardens and countless little secrets, Fort Saint-Jean is a joyful labyrinth")
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831838/Marseille/Marseille%20new/1680x817_nlaahk.jpg"
+file = URI.open(url)
+p29.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 p30= Place.new(name: "La Maison Diamantée",
               interest: "culture", "history", "architecture",
               address: "3 Rue de la Prison, 13002 Marseille",
@@ -473,7 +536,9 @@ p30= Place.new(name: "La Maison Diamantée",
               exterior: true,
               environment: "sunny",
               description: "The Diamantée house is a building in Marseille located just behind the town hall, in the town hall district. It owes its name to the appearance of its facade, which is covered with stone cut in points: prismatic bosses")
-
+url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831842/Marseille/Marseille%20new/Maison_Diamante%CC%81e__3x2_crop_hjjmsc.jpghttps://res.cloudinary.com/drwz0yg18/image/upload/v1641831842/Marseille/Marseille%20new/Maison_Diamante%CC%81e__3x2_crop_hjjmsc.jpg"
+file = URI.open(url)
+p30.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
 
  puts 'created 1 place .....'
 
