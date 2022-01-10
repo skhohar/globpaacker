@@ -3,16 +3,25 @@ class PlacesController < ApplicationController
     @place = Place.new
   end
 
-  def create
-    @place = Place.new(place_params)
-    @user = current_user
-    @place.user = @user
-    if @place.save
-      redirect_to dashboard_path notice: "You successfully create a new place"
-    else
-      flash[:notice] = 'Something is missing'
-      render :new
-    end
+  def show
+    @navigation = Navigation.find(params[:step][:navigation_id])
+    @place = Place.find(params[:id])
+    @navigation.place = @place
+  end
+
+
+ def new
+   @place = Place.new
+ end
+
+ def create
+  @place = Place.new(place_params)
+  @place.user = current_user
+  if @place.save
+    redirect_to dashboard_path notice: "You successfully create a new place"
+  else
+    flash[:notice] = 'Something is missing'
+    render :new
   end
 
   def destroy
