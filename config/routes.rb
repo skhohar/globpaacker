@@ -8,12 +8,10 @@ Rails.application.routes.draw do
 
  resources :navigations, only: %i[show new create] do
   resources :places, only: %i[show] do
-    resources :steps, only: %i[show] do
       member do
          patch :visited, as: 'visited'
       end
     end
-  end
  
     member do
       :places

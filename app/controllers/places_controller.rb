@@ -1,7 +1,9 @@
 class PlacesController < ApplicationController
 
   def show
+    @navigation = Navigation.find(params[:step][:navigation_id])
     @place = Place.find(params[:id])
+    @navigation.place = @place
   end
 
 
