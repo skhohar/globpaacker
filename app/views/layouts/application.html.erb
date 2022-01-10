@@ -24,12 +24,10 @@
   </head>
 
   <body>
-     <% unless current_page?(root_path) %>
-       <%= render 'shared/navbar' %>
-     <% end %>
-     <%= yield %>
+    <% unless current_page?(root_path) %>
+      <%= render 'shared/navbar' %>
+    <% end %>
+    <%= yield %>
     <%= render 'shared/flashes' %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
   </body>
 </html>
