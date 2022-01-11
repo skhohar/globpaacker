@@ -16,7 +16,7 @@
         <div class="dash-card-text">
           <% if @user.places.empty? %>
             <p> You never created a place yet </p>
-            <%= link_to new_places_path do %>
+            <%= link_to new_place_path do %>
               <button class="btn btn-secondary trans"><strong>Create a new Place</strong></button>
             <% end %>
           <% else %>
