@@ -29,7 +29,7 @@ const initMapbox = () => {
       });
 
         async function getAndDisplayRoute(start, end) {
-          // make a directions request using walking profile
+          // makes a directions request using walking profile
           const query = await fetch(
             `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
             { method: 'GET' }
