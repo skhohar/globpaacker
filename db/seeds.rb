@@ -61,13 +61,14 @@ n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitud
 
 puts 'created 1 navigation'
 
-csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
+#csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
 
-CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
+##CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
 file = URI.open(urls.sample)
 
 #CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
-  #file = URI.open(urls.sample)
+  #
+  file = URI.open(urls.sample)
 
   #name = row["Nom du site"]
   #interest = row["Categorie"]
@@ -91,8 +92,6 @@ file = URI.open(urls.sample)
  #(io: file, filename: 'file.png', content_type: 'image/png')
   #place.save
 
-
-
 p1= Place.new(name: "Musée Cantini",
               interest: "culture", "contemporary arts",
               address: "19 Rue Grignan 13006 Marseille"
@@ -102,7 +101,7 @@ p1= Place.new(name: "Musée Cantini",
               sense: "best sight",
               exterior: false,
               environement: "calm", "windy",
-              description: "It houses collections of modern and contemporary art complemented by those of the Museum of Contemporary Art in Marseille")
+              description: "It houses collections of modern and contemporary art complemented by those of the Museum of Contemporary Art in Marseille. The museum initially exhibited his works from the 17th to the 19th century, including painters from the 19th century Provencal school, such as Paul Guigou, Adolphe Monticelli, Émile Loubon, René Seyssaud, Félix Ziem, Maurice Bompard, Jean-Antoine Constantin, Gustave Ricard or José Silbert. Since then, it has specialized more particularly in modern art from the first half of the twentieth century until the sixties and today houses one of the most important French provincial public collections covering the period 1900-1980, along with those museums in Lyon, Saint-Étienne, Grenoble or Strasbourg.")
 url = "'https://res.cloudinary.com/drwz0yg18/image/upload/v1641831780/Marseille/Marseille%20new/musee_marseille_lovespots_cantini_05_eoacij.jpg"
 file = URI.open(url)
 p1.photo.attach(io: file, filename: 'file.png', content_type: 'image/jpg')
@@ -115,7 +114,7 @@ p2= Place.new(name: "Opéra de Marseille",
               sense: "amazing hearing",
               exterior: false,
               environment: "calm", "windy",
-              description: "It is a theater located in the district of the same name, not far from the Old Port")
+              description: "It is a theater located in the district of the same name, not far from the Old Port. The first opera theater was created in Marseille in 1685 by the composer Pierre Gaultier who obtained permission from Lully to open such an establishment, in return for the payment of an excessive royalty which ruined it. It is said that Mademoiselle de Maupin (actress) performed there at the end of the 1680s.Marseille's municipal opera house is built on the remains of the Grand-Théâtre, which was destroyed by fire in 1919.")
 url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831758/Marseille/Marseille%20new/Ope%CC%81ra-de-Marseille-e1544270641705_mpz1pg.jpg"
 file = URI.open(url)
 p2.photo.attach(io: file, filename: 'file.png', content_type: 'image/jpg')
@@ -128,7 +127,7 @@ p3= Place.new(name: "Palais du Pharo",
               sense: "best sight",
               exterior: false,
               environment: "sunny",
-              description: "The Pharo Palace is a Marseille monument whose construction was ordered by Napoleon III for the Empress Eugenie in the second half of the 19th century")
+              description: "The Pharo Palace (from Occitan faròt, lighthouse) is a Marseille monument whose construction was ordered by Napoleon III for the Empress Eugenie in the second half of the 19th century. It now belongs to the city of Marseille and is a venue for conferences and various events. It overlooks the port pass, on the sea side, and the Pharo garden, on the town side.")
 url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641886932/Marseille/Marseille%20new/depositphotos_379242336-stock-photo-marsigliafrancia-april2018-view-of-the_y60tuf.jpg"
 file = URI.open(url)
 p3.photo.attach(io: file, filename: 'file.png', content_type: 'image/jpg')
@@ -141,7 +140,7 @@ p4= Place.new(name: "Mucem",
               sense: "best sight",
               exterior: false,
               environment: "cloudy", "windy", "sunny",
-              description: "The Mucem is a national museum under the supervision of the Ministry of Culture and devoted to the civilizations of Europe and the Mediterranean")
+              description: "The Museum of European and Mediterranean Civilizations (Mucem) is a national museum located in Marseille. It was inaugurated by President François Hollande on June 7, 2013, when Marseille was the European capital of culture.A society museum, the Mucem is a national museum placed under the supervision of the Ministry of Culture and devoted to the civilizations of Europe and the Mediterranean. By creating this museum in Marseille, the State is providing the second largest city in France with major cultural facilities.The permanent exhibitions are based on different scientific fields: anthropology, archeology, history, art history and contemporary art. The museum also offers temporary exhibitions often linked to artistic or societal news. The museum's vocation is to report on the historical and social permanence of this basin of civilization, as well as the tensions that run through it until the present day.According to the definition of ICOM and the principles of the “Museums Law” in France, the Mucem associates with its program of exhibitions, a rich cultural program. Like a forum, it is intended to be a place of debate, and the artistic and cultural program, as well as the exhibitions, seek to tackle the major questions which animate contemporary European and Mediterranean societies. The Mucem is one of the scientific departments of national museums, the bridgehead of social museums in France for the cultural anthropology of societies in Europe and the Mediterranean.")
 url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831743/Marseille/Marseille%20new/le-mucem-porte-dacces-sur-les-enjeux-et-traditions-de-la-mediterranee-825x460_p5x9z2.jpg"
 file = URI.open(url)
 p4.photo.attach(io: file, filename: 'file.png', content_type: 'image/png')
@@ -485,7 +484,7 @@ file = URI.open(url)
 p30.photo.attach(io: file, filename: 'file.png', content_type: 'image/jpg')
 
 
-
+Place.save
 puts 'created 1 place .....'
 
  step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
