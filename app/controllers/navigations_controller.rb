@@ -1,5 +1,5 @@
 class NavigationsController < ApplicationController
-  before_action :set_navigation, only: :show
+  before_action :set_navigation, only: %i[show add_place_to_itinerary]
 
   def show
     @nav_markers =
@@ -31,7 +31,10 @@ class NavigationsController < ApplicationController
       ]
   end
 
-  def itinerary_to_nextplace
+  def add_place_to_itinerary(place)
+    # on prend la navigation --> ok
+    # on prend la place
+    # on inscrit les coordonnées de la place comme waypoint
   end
 
   def visited
