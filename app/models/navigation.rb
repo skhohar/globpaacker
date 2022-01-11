@@ -3,7 +3,7 @@ class Navigation < ApplicationRecord
   has_many :steps
   # geocoded_by :ending_address
   # after_validation :geocode, if: :will_save_change_to_ending_address?
-
+  WEATHER = ["Cloudy", "Sunny", "Windy", "Rainy"]
   # validates :starting_longitude, presence: true
   # validates :starting_latitude, presence: true
   # validates :ending_longitude, presence: true

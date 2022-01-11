@@ -16,8 +16,8 @@
         <div class="dash-card-text">
           <% if @user.places.empty? %>
             <p> You never created a place yet </p>
-            <%= link_to new_places_path do %>
-              <button class="btn-journey-customization mx-auto"><strong>Create a new Place</strong></button>
+            <%= link_to new_place_path do %>
+              <button class="btn btn-secondary trans but-place"><strong>Create a new Place</strong></button>
             <% end %>
           <% else %>
             <% @user.places.each do |place| %>
@@ -30,7 +30,7 @@
                   </p>
                   <p> Description: <%= place.description %></p>
                   <%= link_to place_path(place), method: :delete do %>
-                    <div class="btn btn-secondary trans">
+                    <div class="btn btn-secondary trans but-place">
                       <p id="destroy" > destroy this place </p>
                     </div>
                   <% end %>

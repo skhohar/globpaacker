@@ -17,11 +17,11 @@ class NavigationsController < ApplicationController
   def new
     @navigation = Navigation.new
     @markers =
-      [
+      [{
         lat: @navigation.starting_longitude,
         lng: @navigation.starting_latitude
 
-      ]
+      }]
   end
 
   def itinerary_to_nextplace

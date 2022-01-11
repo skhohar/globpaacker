@@ -18,38 +18,6 @@ User.destroy_all
 
 puts "seeding"
 
-# urls = [https://res.cloudinary.com/drwz0yg18/image/upload/v1641847771/Marseille/Marseille%20new/eglise-saint-laurent-marseille_u3olga.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641847115/Marseille/Marseille%20new/theatre-du-gymnase-a-marseille-37982520_nw5hws.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641846708/Marseille/Marseille%20new/love-spots_jardin-puget_05_nll0s9.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641832942/Marseille/Marseille%20new/muse%CC%81e-du-savon-de-marseille-la-licorne-marseille-all-year_zmxc6x.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831842/Marseille/Marseille%20new/Maison_Diamante%CC%81e__3x2_crop_hjjmsc.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831838/Marseille/Marseille%20new/1680x817_nlaahk.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831834/Marseille/Marseille%20new/Porte_d_Aix_Marseille_jaow5s.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831831/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_8_dqwake.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831828/Marseille/Marseille%20new/abbaye-saint-victorjorengo2-1920x960_nrwzxj.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831825/Marseille/Marseille%20new/jardin-vestige-antique-centre-bourse-1400x934_p5gh0l.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831821/Marseille/Marseille%20new/14013216928_3958ea2f7c_b_ymanbo.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831818/Marseille/Marseille%20new/news_2293_tc9qhv.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831815/Marseille/Marseille%20new/castellane-marseille_ht5yyu.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831812/Marseille/Marseille%20new/IMG_6888_xcbtew.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831808/Marseille/Marseille%20new/torrefaction-noailles-marseille-14512191980_svoto0.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831805/Marseille/Marseille%20new/74321_itooft.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831803/Marseille/Marseille%20new/saladin-epices-du-monde-boutique-marseille-all-year_nnyqz5.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831798/Marseille/Marseille%20new/915366a866010a8ff49ab7e3ccd4e2f8_adnjfe.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831795/Marseille/Marseille%20new/photo-1630836741356-240933683544_y1sfb2.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641886932/Marseille/Marseille%20new/depositphotos_379242336-stock-photo-marsigliafrancia-april2018-view-of-the_y60tuf.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831783/Marseille/Marseille%20new/c10p02_Palais-des-arts_20150701_145542_emoqaj.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831780/Marseille/Marseille%20new/musee_marseille_lovespots_cantini_05_eoacij.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831764/Marseille/Marseille%20new/te%CC%81le%CC%81chargement_um7lvs.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831758/Marseille/Marseille%20new/Ope%CC%81ra-de-Marseille-e1544270641705_mpz1pg.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641848739/Marseille/Marseille%20new/palais-longchamp-leotcm-1920x960_bi9huy.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831743/Marseille/Marseille%20new/le-mucem-porte-dacces-sur-les-enjeux-et-traditions-de-la-mediterranee-825x460_p5x9z2.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831739/Marseille/Marseille%20new/la-crie%CC%81e-the%CC%81a%CC%82tre-national-de-marseille_x3cd8a.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831735/Marseille/Marseille%20new/chateau-borely-marseille-21-848x566_fdrpqu.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641831718/Marseille/Marseille%20new/vieille_charite_marseille-1_612x0_po46h9.jpg,
-#         https://res.cloudinary.com/drwz0yg18/image/upload/v1641886664/Marseille/Marseille%20new/thumbnail_ks6mqs.jpg]
-
-
  u1 = User.create!(name: "Erika", email: "fonsecarika@gmail.com", password: "123456789", password_confirmation: "123456789")
  u2 = User.create!(name: "Sarah", email: "sarah@gmail.com", password: "123456789", password_confirmation: "123456789")
  u3 = User.create!(name: "Ilhem", email: "illem@gmail.com", password: "123456789", password_confirmation: "123456789")
@@ -57,39 +25,15 @@ puts "seeding"
 
 puts 'created 3 users'
 
-n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitude: "43.294522397027606", ending_longitude: "5.380254614802709", ending_latitude: "43.30283129514038", done: true, user_id: User.last.id, time_deadline: "10:12:22.869900", date: "2022-01-06")
+n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitude: "43.294522397027606", ending_longitude: "5.380254614802709", ending_latitude: "43.30283129514038", done: true, user_id: User.last.id, time_deadline: "10:12:22.869900", date: "2022-01-06", weather: "Sunny")
 
 puts 'created 1 navigation'
+puts 'seed done'
 
-#csv_options = { col_sep: '	', quote_char: '"', headers: :first_row }
 
-##CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
-#file = URI.open(urls.sample)
 
-#CSV.foreach(Rails.root.join('lib/lieux_culturels.csv'), csv_options) do |row|
-  #file = URI.open(urls.sample)
+  
 
-  #name = row["Nom du site"]
-  #interest = row["Categorie"]
-  #address = row["Adresse 1"] + " " + row["Code Postal"] + " " + row["Ville"]
-  #longitude = row["Longitude"]
-  #latitude = row["Latitude"]
-
-  #place = Place.new(name: name,
-                  #interest: Place::INTERESTS.sample(rand(1..7)),
-                  #address: address,
-                  #longitude: longitude,
-                  #latitude: latitude,
-                  #user_id: User.all.sample.id,
-                  #duration: rand(30..300),
-                  #rating: rand(1..5),
-                  #senses: Place::SENSES.sample,
-                  #exterior: false,
-                  #environment: Place::ENVIRONMENTS.sample,
-                  #description: Faker::Quote.jack_handey
-                #)
- #(io: file, filename: 'file.png', content_type: 'image/png')
-  #place.save
 
 p1= Place.new(name: "Musée Cantini",
               interest: ["culture", "contemporary arts"],
@@ -486,7 +430,9 @@ places = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16,
 places.each do |place|
   place.save!
  puts 'created 1 place .....'
+
 end
+
 
  step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
 
