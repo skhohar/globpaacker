@@ -1,0 +1,12 @@
+<div class="container-fluid" style="padding-top: 20px;">
+  <div class="title-card">
+    <h1><%= @place.name %></h1>
+
+    <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %></li>
+  <li><strong>Senses: </strong> <%= @place.senses %> | <strong>Interests: </strong> <%= @place.interest %></li>
+  <li><strong>Environment: </strong> <%= @place.environment %> | <strong>Rating: </strong> <%= @place.rating %> /10</li>
+  <li><strong>To know everything: </strong> <%= @place.description %></li>
+  </ul>
+
+  </div>
+<div>

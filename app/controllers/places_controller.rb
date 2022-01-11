@@ -1,12 +1,17 @@
 class PlacesController < ApplicationController
-  def new
-    @place = Place.new
+
+  def show
+    @place = Place.find(params[:id])
   end
 
-  def create
-    @place = Place.new(place_params)
-    @user = current_user
-    @place.user = @user
+
+ def new
+   @place = Place.new
+ end
+
+ def create
+  @place = Place.new(place_params)
+  @place.user = current_user
     if @place.save
       redirect_to dashboard_path notice: "You successfully create a new place"
     else

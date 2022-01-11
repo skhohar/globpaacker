@@ -231,10 +231,13 @@ p11 = Place.new(name: "Wonderful spices of Saladin",
                   senses: 'Best Smell',
                   exterior: false,
                   environment: "Calm",
-                  description: "Discover incredibkle spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+
+              
 url = "https://res.cloudinary.com/drwz0yg18/image/upload/v1641831803/Marseille/Marseille%20new/saladin-epices-du-monde-boutique-marseille-all-year_nnyqz5.jpg"
 file = URI.open(url)
 p11.photo.attach(io: file, filename: 'file.png', content_type: 'image/jpg')
+                  description: "Discover incredible spices from all around the world in this reknowed shop, emblematic of both Marseilles and the city center")
+
 p12 = Place.new(name: "Fresh sea scents on the Old Port fish market",
                   interest: "Food", "Tradition",
                   address: "11 quai des Belges, 13001 Marseille",

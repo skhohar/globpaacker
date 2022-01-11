@@ -3,9 +3,13 @@
     <%= image_tag("logo.png") %> <p class="logotext"> globpacker </p>
   <% end %>
 
-  <% if user_signed_in? %>
-    <%= link_to dashboard_path do %>
-      <button type="button" class="btn-journey-customization" id="login">My profil </button>
+  <% if user_signed_in? && request.path.include?('dashboard') %>
+    <%= link_to destroy_user_session_path, method: :delete do %>
+      <button type="button" class="btn-journey-customization" id="login">Log out </button>
+    <% end %>
+    <% elsif user_signed_in? %>
+      <%= link_to dashboard_path do %>
+        <button type="button" class="btn-journey-customization" id="login">My profil </button>
     <% end %>
   <% else %>
     <%= link_to new_user_session_path do %>

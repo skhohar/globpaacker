@@ -4,13 +4,14 @@ class NavigationsController < ApplicationController
   def show
     @markers =
       [{
-        lat: @navigation.starting_longitude,
-        lng: @navigation.starting_latitude
+        lat: @navigation.starting_latitude,
+        lng: @navigation.starting_longitude
       },
        {
-         lat: @navigation.ending_longitude,
-         lng: @navigation.ending_latitude
+         lat: @navigation.ending_latitude,
+         lng: @navigation.ending_longitude
        }]
+
   end
 
   def new
@@ -33,9 +34,16 @@ class NavigationsController < ApplicationController
   def create
     @navigation = Navigation.new(navigation_params)
     @navigation.user = current_user
+    @navigation.done = false
+    @navigation.date = Date.today
+    # create latitude & longitude --> not working
+    @nav_coords = Geocoder.search(@navigation.ending_address.to_s).first.coordinates
+    @navigation.ending_longitude = @nav_coords[1]
+    @navigation.ending_latitude = @nav_coords[0]
     if @navigation.save
       redirect_to navigation_path(@navigation)
     else
+      flash[:notice] = 'Something is missing'
       render :new
     end
   end
@@ -51,6 +59,6 @@ class NavigationsController < ApplicationController
 
   def navigation_params
     params.require(:navigation).permit(:user_id, :place_id, :starting_longitude, :starting_latitude, :ending_longitude,
-                                       :ending_latitude, :done, :time_deadline, :date)
+                                       :ending_latitude, :done, :time_deadline, :date, :ending_address)
   end
 end
