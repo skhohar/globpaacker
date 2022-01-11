@@ -30,11 +30,6 @@ n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitud
 puts 'created 1 navigation'
 puts 'seed done'
 
-
-
-  
-
-
 p1= Place.new(name: "Musée Cantini",
               interest: ["culture", "contemporary arts"],
               address: "19 Rue Grignan 13006 Marseille",
@@ -432,7 +427,9 @@ places.each do |place|
  puts 'created 1 place .....'
 end
 
- step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
+
+step1 = Step.create!(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
 
  puts 'created 1 step'
+
  puts ' done seeding ......'

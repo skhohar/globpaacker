@@ -9,9 +9,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 //   map.addControl(directions, 'top-left');
 // }
 
+const fitMapToMarkers = (map, markers) => {
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([marker[0], marker[1]]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 14, duration: 0 });
+};
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
-
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -22,11 +27,7 @@ const initMapbox = () => {
         center: [position.coords.longitude, position.coords.latitude],
         zoom: 14
       });
-      // markers.forEach((marker) => {
-        // new mapboxgl.Marker()
-        //   .setLngLat([position.coords.longitude, position.coords.latitude])
-        //   .addTo(map);
-        // });
+
         async function getAndDisplayRoute(start, end) {
           // make a directions request using walking profile
           const query = await fetch(
@@ -69,22 +70,36 @@ const initMapbox = () => {
               });
             }
             // add turn instructions here at the end
-          }
+        }
 
           const navStartingCoords = [position.coords.longitude, position.coords.latitude];
           const navEndingCoords = [
             JSON.parse(mapElement.dataset.nav)[1]?.lng,
             JSON.parse(mapElement.dataset.nav)[1]?.lat
           ]
+          const navMarkers = [navStartingCoords, navEndingCoords]
+
       // create a function to make a directions request
 
       map.on('load', () => {
 
+
         if (navEndingCoords[1] && navEndingCoords[0]) {
           // make an initial directions request that
           // starts and ends at the same location
-          getAndDisplayRoute(navStartingCoords, navEndingCoords);
 
+          const places = JSON.parse(mapElement.dataset.places);
+            places.forEach((place) => {
+              new mapboxgl.Marker()
+                .setLngLat([
+                  place.lng,
+                  place.lat
+                ])
+                .addTo(map);
+            });
+
+          getAndDisplayRoute(navStartingCoords, navEndingCoords);
+          fitMapToMarkers(map, navMarkers);
           // Add starting point to the map
           map.addLayer({
             id: 'point',
@@ -99,7 +114,7 @@ const initMapbox = () => {
                     properties: {},
                     geometry: {
                       type: 'Point',
-                      coordinates: navStartingCoords
+                      coordinates: navStartingCoords // this needs to be an array of coordinates (beware, not an object)
                     }
                   }
                 ]
@@ -113,7 +128,6 @@ const initMapbox = () => {
           // this is where the code from the next step will go
           // On récupère la destination rentré par l'utilisateur -> navigation -> new
 
-            // const coords = navEndingCoords
             const end = {
               type: 'FeatureCollection',
               features: [
@@ -181,40 +195,11 @@ const initMapbox = () => {
                 'circle-color': '#3887be'
               }
             });
-        }
+          }
       });
 
     });
-
-
-    // addDirectionToMap(map);
-
-
-
-    // map.addControl(
-    //   new mapboxgl.GeolocateControl({
-    //     positionOptions: {
-    //       enableHighAccuracy: true
-    //     },
-    //     // When active the map will receive updates to the device's location as it changes.
-    //     trackUserLocation: true,
-    //     // Draw an arrow next to the location dot to indicate which direction the device is heading.
-    //     showUserHeading: true
-    //   })
-    // );
-
-    // const instructions = document.getElementById('instructions');
-    // const steps = data.legs[0].steps;
-
-    // let tripInstructions = '';
-    // for (const step of steps) {
-    //   tripInstructions += `<li>${step.maneuver.instruction}</li>`;
-    // }
-    // instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-    //   data.duration / 60
-    // )} min :walking: </strong></p><ol>${tripInstructions}</ol>`;
   }
-
 };
 
 export { initMapbox };

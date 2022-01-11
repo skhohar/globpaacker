@@ -11,17 +11,23 @@ class NavigationsController < ApplicationController
          lat: @navigation.ending_latitude,
          lng: @navigation.ending_longitude
        }]
-
+    @places = Place.all
+    @places_markers = @places.geocoded.map do |place|
+      {
+        lat: place.latitude,
+        lng: place.longitude
+      }
+    end
   end
 
   def new
     @navigation = Navigation.new
     @markers =
-      [{
+      [
         lat: @navigation.starting_longitude,
         lng: @navigation.starting_latitude
 
-      }]
+      ]
   end
 
   def itinerary_to_nextplace
