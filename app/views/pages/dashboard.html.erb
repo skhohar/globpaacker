@@ -17,7 +17,7 @@
           <% if @user.places.empty? %>
             <p> You never created a place yet </p>
             <%= link_to new_place_path do %>
-              <button class="btn btn-secondary trans"><strong>Create a new Place</strong></button>
+              <button class="btn btn-secondary trans but-place"><strong>Create a new Place</strong></button>
             <% end %>
           <% else %>
             <% @user.places.each do |place| %>
@@ -30,7 +30,7 @@
                   </p>
                   <p> Description: <%= place.description %></p>
                   <%= link_to place_path(place), method: :delete do %>
-                    <div class="btn btn-secondary trans">
+                    <div class="btn btn-secondary trans but-place">
                       <p id="destroy" > destroy this place </p>
                     </div>
                   <% end %>
