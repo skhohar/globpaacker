@@ -9,9 +9,14 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 //   map.addControl(directions, 'top-left');
 // }
 
+const fitMapToMarkers = (map, markers) => {
+  const bounds = new mapboxgl.LngLatBounds();
+  markers.forEach(marker => bounds.extend([marker[0], marker[1]]));
+  map.fitBounds(bounds, { padding: 70, maxZoom: 14, duration: 0 });
+};
+
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
-
 
   if (mapElement) { // only build a map if there's a div#map to inject into
     mapboxgl.accessToken = mapElement.dataset.mapboxApiKey;
@@ -22,11 +27,7 @@ const initMapbox = () => {
         center: [position.coords.longitude, position.coords.latitude],
         zoom: 14
       });
-      // markers.forEach((marker) => {
-        // new mapboxgl.Marker()
-        //   .setLngLat([position.coords.longitude, position.coords.latitude])
-        //   .addTo(map);
-        // });
+
         async function getAndDisplayRoute(start, end) {
           // make a directions request using walking profile
           const query = await fetch(
@@ -76,6 +77,7 @@ const initMapbox = () => {
             JSON.parse(mapElement.dataset.nav)[1]?.lng,
             JSON.parse(mapElement.dataset.nav)[1]?.lat
           ]
+          const navMarkers = [navStartingCoords, navEndingCoords]
 
       // create a function to make a directions request
 
@@ -86,19 +88,18 @@ const initMapbox = () => {
           // make an initial directions request that
           // starts and ends at the same location
 
-        const places = JSON.parse(mapElement.dataset.places);
-        console.log(places)
-          places.forEach((place) => {
-            new mapboxgl.Marker()
-              .setLngLat([
-                place.lng,
-                place.lat
-              ])
-              .addTo(map);
-          });
+          const places = JSON.parse(mapElement.dataset.places);
+            places.forEach((place) => {
+              new mapboxgl.Marker()
+                .setLngLat([
+                  place.lng,
+                  place.lat
+                ])
+                .addTo(map);
+            });
 
           getAndDisplayRoute(navStartingCoords, navEndingCoords);
-
+          fitMapToMarkers(map, navMarkers);
           // Add starting point to the map
           map.addLayer({
             id: 'point',
@@ -127,7 +128,6 @@ const initMapbox = () => {
           // this is where the code from the next step will go
           // On récupère la destination rentré par l'utilisateur -> navigation -> new
 
-            // const coords = navEndingCoords
             const end = {
               type: 'FeatureCollection',
               features: [
