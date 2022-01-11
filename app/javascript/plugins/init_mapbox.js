@@ -76,6 +76,10 @@ const initMapbox = () => {
             JSON.parse(mapElement.dataset.nav)[1]?.lng,
             JSON.parse(mapElement.dataset.nav)[1]?.lat
           ]
+          // const places = [
+          //   JSON.parse(mapElement.dataset.places)[1]?.lng,
+          //   JSON.parse(mapElement.dataset.places)[1]?.lat
+          // ]
       // create a function to make a directions request
 
       map.on('load', () => {
