@@ -37,6 +37,7 @@ const initMapbox = () => {
             const json = await query.json();
             const data = json.routes[0];
             const route = data.geometry.coordinates;
+            console.log(route)
             const geojson = {
               type: 'Feature',
               properties: {},
