@@ -15,7 +15,8 @@ class NavigationsController < ApplicationController
     @places_markers = @places.geocoded.map do |place|
       {
         lat: place.latitude,
-        lng: place.longitude
+        lng: place.longitude,
+        info_window: render_to_string(partial: "info_window", locals: { place: place })
       }
     end
   end
