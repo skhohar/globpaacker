@@ -6,13 +6,6 @@ YOU ARE HERE:
       data-markers="<%= @markers.to_json %>"
       data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
 
-  <mapbox-gl interactive access-token="MAPBOX_API_KEY">
-
-  <mapbox-gl-control interactive position="top-right">
-
-  </mapbox-gl-control>
-</mapbox-gl>
-
   </div>
 </div>
 <%= render 'form', navigation: @navigation %>
