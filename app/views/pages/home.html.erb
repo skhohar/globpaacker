@@ -9,7 +9,7 @@
     <%= link_to new_user_session_path do %>
       <% if user_signed_in? %>
         <%= link_to destroy_user_session_path, method: :delete do %>
-          <button type="button" class="login-but"> LOG OUT </button>
+          <button type="button" class="login-but logout-but"> LOG OUT </button>
         <% end %>
       <% else %>
         <%= link_to new_user_session_path do %>
