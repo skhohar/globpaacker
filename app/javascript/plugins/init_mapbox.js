@@ -69,24 +69,34 @@ const initMapbox = () => {
               });
             }
             // add turn instructions here at the end
-          }
+        }
 
           const navStartingCoords = [position.coords.longitude, position.coords.latitude];
           const navEndingCoords = [
             JSON.parse(mapElement.dataset.nav)[1]?.lng,
             JSON.parse(mapElement.dataset.nav)[1]?.lat
           ]
-          // const places = [
-          //   JSON.parse(mapElement.dataset.places)[1]?.lng,
-          //   JSON.parse(mapElement.dataset.places)[1]?.lat
-          // ]
+
       // create a function to make a directions request
 
       map.on('load', () => {
 
+
         if (navEndingCoords[1] && navEndingCoords[0]) {
           // make an initial directions request that
           // starts and ends at the same location
+
+        const places = JSON.parse(mapElement.dataset.places);
+        console.log(places)
+          places.forEach((place) => {
+            new mapboxgl.Marker()
+              .setLngLat([
+                place.lng,
+                place.lat
+              ])
+              .addTo(map);
+          });
+
           getAndDisplayRoute(navStartingCoords, navEndingCoords);
 
           // Add starting point to the map
@@ -103,7 +113,7 @@ const initMapbox = () => {
                     properties: {},
                     geometry: {
                       type: 'Point',
-                      coordinates: navStartingCoords
+                      coordinates: navStartingCoords // this needs to be an array of coordinates (beware, not an object)
                     }
                   }
                 ]
@@ -185,40 +195,11 @@ const initMapbox = () => {
                 'circle-color': '#3887be'
               }
             });
-        }
+          }
       });
 
     });
-
-
-    // addDirectionToMap(map);
-
-
-
-    // map.addControl(
-    //   new mapboxgl.GeolocateControl({
-    //     positionOptions: {
-    //       enableHighAccuracy: true
-    //     },
-    //     // When active the map will receive updates to the device's location as it changes.
-    //     trackUserLocation: true,
-    //     // Draw an arrow next to the location dot to indicate which direction the device is heading.
-    //     showUserHeading: true
-    //   })
-    // );
-
-    // const instructions = document.getElementById('instructions');
-    // const steps = data.legs[0].steps;
-
-    // let tripInstructions = '';
-    // for (const step of steps) {
-    //   tripInstructions += `<li>${step.maneuver.instruction}</li>`;
-    // }
-    // instructions.innerHTML = `<p><strong>Trip duration: ${Math.floor(
-    //   data.duration / 60
-    // )} min :walking: </strong></p><ol>${tripInstructions}</ol>`;
   }
-
 };
 
 export { initMapbox };
