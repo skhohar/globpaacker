@@ -430,9 +430,7 @@ places = [p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16,
 places.each do |place|
   place.save!
  puts 'created 1 place .....'
-
 end
-
 
  step1 = Step.create(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
 
