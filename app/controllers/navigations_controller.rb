@@ -31,12 +31,6 @@ class NavigationsController < ApplicationController
       ]
   end
 
-  def add_place_to_itinerary(place)
-    # on prend la navigation --> ok
-    # on prend la place
-    # on inscrit les coordonnées de la place comme waypoint
-  end
-
   def visited
     @navigation = Navigation.find(params[:place_id])
   end
@@ -56,9 +50,6 @@ class NavigationsController < ApplicationController
       flash[:notice] = 'Something is missing'
       render :new
     end
-  end
-
-  def navigation_decision
   end
 
   private
