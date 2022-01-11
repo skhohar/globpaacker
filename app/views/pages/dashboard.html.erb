@@ -17,7 +17,7 @@
           <% if @user.places.empty? %>
             <p> You never created a place yet </p>
             <%= link_to new_places_path do %>
-              <button class="btn-journey-customization mx-auto"><strong>Create a new Place</strong></button>
+              <button class="btn btn-secondary trans"><strong>Create a new Place</strong></button>
             <% end %>
           <% else %>
             <% @user.places.each do |place| %>
