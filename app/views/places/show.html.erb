@@ -1,12 +1,26 @@
-<div class="container-fluid" style="padding-top: 20px;">
+<div class="wrapperall">
+<div class="container-fluid" id="show-place">
   <div class="title-card">
-    <h1><%= @place.name %></h1>
- <li><%= @place.photo  %> </li>
-    <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %></li>
-  <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %></li>
-  <li><strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Rating: </strong> <%= @place.rating %> /10</li>
-  <li><strong>To know everything: </strong> <%= @place.description %></li>
+      <h1 class="inline"><%= @place.name %></h1>
+    <div class="photo">
+    <%= image_tag(@place.photo)  %>
+    </div>
+  <ul>
+    <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %>
+    </li>
+     <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
+     </li>
+     <li><strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Rating: </strong> <%= @place.rating %> /5
+     </li>
+     <li><strong>To know everything: </strong> <%= @place.description %>
+     </li>
   </ul>
-
   </div>
-<div>
+    <%= link_to navigation_path(@navigation) do %>
+              <button class="btn btn-secondary" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
+            <% end %>
+    <%= link_to navigation_path(@navigation) do %>
+              <button class="btn btn-secondary" id="opbut"><strong> I AM HERE </strong></button>
+            <% end %>
+  </div>
+</div>
