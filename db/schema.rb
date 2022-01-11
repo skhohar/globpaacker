@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_01_10_110712) do
+ActiveRecord::Schema.define(version: 2022_01_11_120224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -56,6 +56,7 @@ ActiveRecord::Schema.define(version: 2022_01_10_110712) do
     t.bigint "user_id", null: false
     t.string "ending_address"
     t.string "starting_address"
+    t.string "weather"
     t.index ["user_id"], name: "index_navigations_on_user_id"
   end
 

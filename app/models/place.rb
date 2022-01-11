@@ -20,7 +20,7 @@ class Place < ApplicationRecord
   RATING = [1, 2, 3, 4, 5]
 
   SENSES = ['Best Sight', "Amazing Hearings", 'Best Tastes', "Amazing Touch", 'Best Smell']
-  ENVIRONMENTS = ["Cloudy", "Sunny", "Windy", "Calm", "Loudy"]
+  ENVIRONMENTS = ["Cloudy", "Sunny", "Windy", "Rainy"]
 
   #  validates :name, uniqueness: true, length: { minimum: 6 }, presence: true
   #  validates :duration, presence: true
