@@ -22,7 +22,6 @@ class NavigationsController < ApplicationController
   end
 
   def show
-    console
     @nav_markers =[
       {
         lat: @navigation.starting_latitude,
