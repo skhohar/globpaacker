@@ -21,6 +21,10 @@ class PlacesController < ApplicationController
     end
   end
 
+  def visited
+
+  end
+
   def destroy
     @place = Place.find(params[:id])
     @place.destroy

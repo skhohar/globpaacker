@@ -1,5 +1,5 @@
 class NavigationsController < ApplicationController
-  before_action :set_navigation, only: %i[show add_place_to_itinerary]
+  before_action :set_navigation, only: :show
 
   def generate_marker_array(places_array, info_window_partial_name = nil)
     return places_array.map do |place|
@@ -22,8 +22,7 @@ class NavigationsController < ApplicationController
   end
 
   def show
-    console
-    @nav_markers =[
+    @nav_markers = [
       {
         lat: @navigation.starting_latitude,
         lng: @navigation.starting_longitude
@@ -62,10 +61,6 @@ class NavigationsController < ApplicationController
 
       ]
   end
-
-  # def visited
-  #   @navigation = Navigation.find(params[:place_id])
-  # end
 
   def create
     @navigation = Navigation.new(navigation_params)
