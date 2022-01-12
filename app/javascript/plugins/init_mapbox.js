@@ -15,7 +15,6 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 50, maxZoom: 15, duration: 0 });
 };
 
-
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -112,6 +111,19 @@ const initMapbox = () => {
           }
         });
       }
+
+      const displayMarkers = (markers, markerColor = "yellow") => {
+        markers.forEach((place) => {
+          const popup = new mapboxgl.Popup().setHTML(place.info_window);
+          new mapboxgl.Marker({ color: markerColor })
+            .setLngLat([
+              place.lng,
+              place.lat
+            ])
+            .setPopup(popup)
+            .addTo(map);
+        });
+      }
       // READ DATA COMING FROM BACKEND
       const navStartingCoords = [position.coords.longitude, position.coords.latitude];
       const navEndingCoords = [
@@ -120,8 +132,8 @@ const initMapbox = () => {
       ]
       const navMarkers = [navStartingCoords, navEndingCoords]
 
-      const stepCoords = mapElement.dataset.steps
-        ? JSON.parse(mapElement.dataset.steps).map((step) => {
+      const visitedStepCoords = mapElement.dataset.visitedSteps
+        ? JSON.parse(mapElement.dataset.visitedSteps).map((step) => {
           return [
             step.lng,
             step.lat
@@ -129,6 +141,15 @@ const initMapbox = () => {
         })
       : []
 
+      const notVisitedStepCoords = mapElement.dataset.notVisitedSteps
+        ? JSON.parse(mapElement.dataset.notVisitedSteps).map((step) => {
+          return [
+            step.lng,
+            step.lat
+          ]
+        })
+        : []
+      const places = JSON.parse(mapElement.dataset.places);
 
       // create a function to make a directions request
 
@@ -138,19 +159,11 @@ const initMapbox = () => {
         if (navEndingCoords[1] && navEndingCoords[0]) {
           // make an initial directions request that
           // starts and ends at the same location
-          const places = JSON.parse(mapElement.dataset.places);
-            places.forEach((place) => {
-              const popup = new mapboxgl.Popup().setHTML(place.info_window);
-              new mapboxgl.Marker()
-                .setLngLat([
-                  place.lng,
-                  place.lat
-                ])
-                .setPopup(popup)
-                .addTo(map);
-            });
+          displayMarkers(places, 'red');
+          displayMarkers(visitedStepCoords, 'green');
+          displayMarkers(notVisitedStepCoords, 'orange');
 
-          getAndDisplayRoute(navStartingCoords, navEndingCoords, stepCoords);
+          getAndDisplayRoute(navStartingCoords, navEndingCoords, notVisitedStepCoords);
           fitMapToMarkers(map, navMarkers);
           displayPoint(navEndingCoords, '#3887be', 'end-point');
         }
