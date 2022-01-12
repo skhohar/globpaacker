@@ -19,6 +19,14 @@ class NavigationsController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { place: place })
       }
     end
+    @steps = @navigation.steps
+    console
+    @step_markers = @steps.map do |step|
+      {
+        lat: step.latitude,
+        lng: step.longitude,
+      }
+    end
   end
 
   def new
