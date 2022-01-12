@@ -4,6 +4,7 @@
       <h1 class="text-center"><%= @place.name %></h1>
     </div>
   </div>
+
       <div class="photo">
         <%= image_tag(@place.photo, :class => "imageplace") %>
       </div>
@@ -19,7 +20,7 @@
        </li>
       </ul>
     <% if @navigation = Navigation.where(:done == false) %>
-       <%= link_to navigation_path(@navigation) do %>
+       <%= link_to navigation_place_steps_path(@navigation, @place, @step), method: :post do %>
           <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
        <% end %>
     <% else %>
