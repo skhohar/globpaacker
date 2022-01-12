@@ -12,9 +12,9 @@ class NavigationsController < ApplicationController
          lng: @navigation.ending_longitude
        }]
        if @navigation.weather == "Rainy" || @navigation.weather == "Windy"
-        return @places = Place.all.find { |place| place[:exterior] == false }
+         @places = Place.where(:exterior == false)
      else
-        return @places = Place.all.find { |place| place[:exterior] == true }
+         @places = Place.where(:exterior == true)
      end
     @places_markers = @places.geocoded.map do |place|
       {
