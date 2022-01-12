@@ -1,0 +1,74 @@
+ .page-404{
+ display:block;
+  background-color: #AACCFF;
+}
+.page-404 * {
+  box-sizing: border-box;
+}
+.page-404-container {
+  display:table;
+  width:100%;
+  max-width: 80%;
+  min-height: 100vh;
+  margin: auto;
+}
+.page-404-cell {
+  display:table-cell;
+  vertical-align: middle;
+  width: 50%;
+}
+.page-404-right {
+  text-align:center;
+}
+.page-404-right span {
+  font-size: 150px;
+  font-weight: 900;
+  color:#222233;
+  display:inline-block;
+  position:relative;
+  padding: 25px 0;
+  border-top:1px solid #222233;
+  border-bottom:1px solid #222233;
+}
+.page-404-cell * {
+  color:#444;
+  font-family: 'Lato', sans-serif;
+}
+.page-404-heading {
+  font-size: 60px;
+  display:block;
+  padding-bottom: 15px;
+  margin-bottom:20px;
+  color: #222233
+}
+.search-group {
+  display:table;
+  margin: 10px 0;
+  width: 100%;
+  max-width: 400px
+}
+.search-group input[type="text"],
+.search-group-addon {
+  display:table-cell;
+  vertical-align:middle;
+  width: 1%;
+}
+.search-group {
+  border: 1px solid #222233;
+}
+.search-group input[type="text"] {
+  height: 40px;
+  border: 0;
+  padding: 7px 15px;
+  color: #000;
+  box-sizing: border-box;
+  width: 100%
+}
+.search-group button {
+  height: 40px;
+  background-color: #222233;
+  color:#fff;
+  border:0;
+  outline: 0;
+  padding: 7px 15px;
+}
