@@ -8,11 +8,19 @@
   <ul>
     <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %>
     </li>
-     <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
+     <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> 
      </li>
-     <li><strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Rating: </strong> <%= @place.rating %> /5
+     <li>
+     <strong> Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
      </li>
-     <li><strong>To know everything: </strong> <%= @place.description %>
+     <li>
+     <strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> 
+     </li> 
+     <li>
+     <strong>Rating: </strong> <%= @place.rating %> /5
+     </li>
+     <li>
+     <strong>To know everything: </strong> <%= @place.description %>
      </li>
   </ul>
   </div>
