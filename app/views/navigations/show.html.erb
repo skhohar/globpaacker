@@ -3,6 +3,9 @@
     style="width: 100%; height: 800px;"
     data-nav="<%= @nav_markers.to_json %>"
     data-places="<%= @places_markers.to_json %>"
-    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+    data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"
+    data-visited-steps="<%=  @visited_step_markers.to_json %>"
+    data-not-visited-steps="<%=  @not_visited_step_markers.to_json %>"
+  >
   </div>
 </div>

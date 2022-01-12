@@ -28,110 +28,70 @@ const initMapbox = () => {
         zoom: 14
       });
 
-        async function getAndDisplayRoute(start, end) {
-          // makes a directions request using walking profile
-          const query = await fetch(
-            `https://api.mapbox.com/directions/v5/mapbox/walking/${start[0]},${start[1]};${end[0]},${end[1]}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
-            { method: 'GET' }
-            );
-            const json = await query.json();
-            const data = json.routes[0];
-            const route = data.geometry.coordinates;
-            console.log(route)
-            const geojson = {
-              type: 'Feature',
-              properties: {},
-              geometry: {
-                type: 'LineString',
-                coordinates: route
-              }
-            };
-            // if the route already exists on the map, we'll reset it using setData
-            if (map.getSource('route')) {
-              map.getSource('route').setData(geojson);
-            }
-            // otherwise, we'll make a new request
-            else {
-              map.addLayer({
-                id: 'route',
-                type: 'line',
-                source: {
-                  type: 'geojson',
-                  data: geojson
-                },
-                layout: {
-                  'line-join': 'round',
-                  'line-cap': 'round'
-                },
-                paint: {
-                  'line-color': '#3887be',
-                  'line-width': 5,
-                  'line-opacity': 0.75
-                }
-              });
-            }
-            // add turn instructions here at the end
+      async function getAndDisplayRoute(start, end, steps= []) {
+        // makes a directions request using walking profile
+        let coordsString;
+        if (steps.length > 0) {
+          const stepsStr = steps.map((step) => {
+            return `${step[0]},${step[1]}`;
+          }).join(";");
+          coordsString = `${start[0]},${start[1]};${stepsStr};${end[0]},${end[1]}`;
+        } else {
+          coordsString = `${start[0]},${start[1]};${end[0]},${end[1]}`;
         }
-
-          const navStartingCoords = [position.coords.longitude, position.coords.latitude];
-          const navEndingCoords = [
-            JSON.parse(mapElement.dataset.nav)[1]?.lng,
-            JSON.parse(mapElement.dataset.nav)[1]?.lat
-          ]
-          const navMarkers = [navStartingCoords, navEndingCoords]
-
-      // create a function to make a directions request
-
-      map.on('load', () => {
-
-
-        if (navEndingCoords[1] && navEndingCoords[0]) {
-          // make an initial directions request that
-          // starts and ends at the same location
-
-          const places = JSON.parse(mapElement.dataset.places);
-            places.forEach((place) => {
-              const popup = new mapboxgl.Popup().setHTML(place.info_window);
-              new mapboxgl.Marker()
-                .setLngLat([
-                  place.lng,
-                  place.lat
-                ])
-                .setPopup(popup)
-                .addTo(map);
-            });
-
-          getAndDisplayRoute(navStartingCoords, navEndingCoords);
-          fitMapToMarkers(map, navMarkers);
-          // Add starting point to the map
-          map.addLayer({
-            id: 'point',
-            type: 'circle',
-            source: {
-              type: 'geojson',
-              data: {
-                type: 'FeatureCollection',
-                features: [
-                  {
-                    type: 'Feature',
-                    properties: {},
-                    geometry: {
-                      type: 'Point',
-                      coordinates: navStartingCoords // this needs to be an array of coordinates (beware, not an object)
-                    }
-                  }
-                ]
-              }
-            },
-            paint: {
-              'circle-radius': 10,
-              'circle-color': '#3887be'
+        // const coordsString =
+        //   ? `${start[0]},${start[1]};${steps.reduce((resultStr, step) => resultStr + `${step[0]},${step[1]}` + ";")}${end[0]},${end[1]}`
+        //   : `${start[0]},${start[1]};${end[0]},${end[1]}`
+        const query = await fetch(
+          `https://api.mapbox.com/directions/v5/mapbox/walking/${coordsString}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
+          { method: 'GET' }
+          );
+          const json = await query.json();
+          const data = json.routes[0];
+          const route = data.geometry.coordinates;
+          const geojson = {
+            type: 'Feature',
+            properties: {},
+            geometry: {
+              type: 'LineString',
+              coordinates: route
             }
-          });
-          // this is where the code from the next step will go
-          // On récupère la destination rentré par l'utilisateur -> navigation -> new
+          };
 
-            const end = {
+          // if the route already exists on the map, we'll reset it using setData
+          if (map.getSource('route')) {
+            map.getSource('route').setData(geojson);
+          }
+          // otherwise, we'll make a new request
+          else {
+            map.addLayer({
+              id: 'route',
+              type: 'line',
+              source: {
+                type: 'geojson',
+                data: geojson
+              },
+              layout: {
+                'line-join': 'round',
+                'line-cap': 'round'
+              },
+              paint: {
+                'line-color': '#3887be',
+                'line-width': 5,
+                'line-opacity': 0.75
+              }
+            });
+          }
+          // add turn instructions here at the end
+      }
+      const displayPoint = (coords, color, name) => {
+        // Add starting point to the map
+        map.addLayer({
+          id: name,
+          type: 'circle',
+          source: {
+            type: 'geojson',
+            data: {
               type: 'FeatureCollection',
               features: [
                 {
@@ -139,68 +99,75 @@ const initMapbox = () => {
                   properties: {},
                   geometry: {
                     type: 'Point',
-                    coordinates: navEndingCoords
+                    coordinates: coords // this needs to be an array of coordinates (beware, not an object)
                   }
                 }
               ]
-            };
-            if (map.getLayer('end')) {
-              map.getSource('end').setData(end);
-            } else {
-              map.addLayer({
-                id: 'end',
-                type: 'circle',
-                source: {
-                  type: 'geojson',
-                  data: {
-                    type: 'FeatureCollection',
-                    features: [
-                      {
-                        type: 'Feature',
-                        properties: {},
-                        geometry: {
-                          type: 'Point',
-                          coordinates: navEndingCoords
-                        }
-                      }
-                    ]
-                  }
-                },
-                paint: {
-                  'circle-radius': 10,
-                  'circle-color': '#f30'
-                }
-              });
             }
-            getAndDisplayRoute(navStartingCoords, navEndingCoords);
-        } else {
-            map.addLayer({
-              id: 'point',
-              type: 'circle',
-              source: {
-                type: 'geojson',
-                data: {
-                  type: 'FeatureCollection',
-                  features: [
-                    {
-                      type: 'Feature',
-                      properties: {},
-                      geometry: {
-                        type: 'Point',
-                        coordinates: navStartingCoords
-                      }
-                    }
-                  ]
-                }
-              },
-              paint: {
-                'circle-radius': 10,
-                'circle-color': '#3887be'
-              }
-            });
+          },
+          paint: {
+            'circle-radius': 10,
+            'circle-color': color
           }
-      });
+        });
+      }
 
+      const displayMarkers = (markers, markerColor = "yellow") => {
+        markers.forEach((place) => {
+          const popup = new mapboxgl.Popup().setHTML(place.info_window);
+          new mapboxgl.Marker({ color: markerColor })
+            .setLngLat([
+              place.lng,
+              place.lat
+            ])
+            .setPopup(popup)
+            .addTo(map);
+        });
+      }
+      // READ DATA COMING FROM BACKEND
+      const navStartingCoords = [position.coords.longitude, position.coords.latitude];
+      const navEndingCoords = [
+        JSON.parse(mapElement.dataset.nav)[1]?.lng,
+        JSON.parse(mapElement.dataset.nav)[1]?.lat
+      ]
+      const navMarkers = [navStartingCoords, navEndingCoords]
+
+      const visitedStepCoords = mapElement.dataset.visitedSteps
+        ? JSON.parse(mapElement.dataset.visitedSteps).map((step) => {
+          return [
+            step.lng,
+            step.lat
+          ]
+        })
+      : []
+
+      const notVisitedStepCoords = mapElement.dataset.notVisitedSteps
+        ? JSON.parse(mapElement.dataset.notVisitedSteps).map((step) => {
+          return [
+            step.lng,
+            step.lat
+          ]
+        })
+        : []
+      const places = JSON.parse(mapElement.dataset.places);
+
+      // create a function to make a directions request
+
+      map.on('load', () => {
+        // CREATE ITINERARY
+        displayPoint(navStartingCoords, '#3887be', 'start-point');
+        if (navEndingCoords[1] && navEndingCoords[0]) {
+          // make an initial directions request that
+          // starts and ends at the same location
+          displayMarkers(places, 'red');
+          displayMarkers(visitedStepCoords, 'green');
+          displayMarkers(notVisitedStepCoords, 'orange');
+
+          getAndDisplayRoute(navStartingCoords, navEndingCoords, notVisitedStepCoords);
+          fitMapToMarkers(map, navMarkers);
+          displayPoint(navEndingCoords, '#3887be', 'end-point');
+        }
+      });
     });
   }
 };
