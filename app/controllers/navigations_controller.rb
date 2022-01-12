@@ -1,36 +1,56 @@
 class NavigationsController < ApplicationController
   before_action :set_navigation, only: %i[show add_place_to_itinerary]
 
+  def generate_marker_array(places_array, info_window_partial_name = nil)
+    return places_array.map do |place|
+      if info_window_partial_name
+        {
+          lat: place.latitude,
+          lng: place.longitude,
+          info_window: render_to_string(
+            partial: info_window_partial_name,
+            locals: { place: place }
+          )
+        }
+      else
+        {
+          lat: place.latitude,
+          lng: place.longitude
+        }
+      end
+    end
+  end
+
   def show
-    @nav_markers =
-      [{
+    console
+    @nav_markers =[
+      {
         lat: @navigation.starting_latitude,
         lng: @navigation.starting_longitude
       },
-       {
-         lat: @navigation.ending_latitude,
-         lng: @navigation.ending_longitude
-       }]
-       if @navigation.weather == "Rainy" || @navigation.weather == "Windy"
-         @places = Place.where(:exterior == false)
-     else
-         @places = Place.where(:exterior == true)
-     end
-    @places_markers = @places.geocoded.map do |place|
       {
-        lat: place.latitude,
-        lng: place.longitude,
-        info_window: render_to_string(partial: "info_window", locals: { place: place })
+        lat: @navigation.ending_latitude,
+        lng: @navigation.ending_longitude
       }
+    ]
+    # Filter for weather
+    if @navigation.weather == "Rainy" || @navigation.weather == "Windy"
+      @places = Place.all.geocoded.where(:exterior == false)
+    else
+      @places = Place.all.geocoded.where(:exterior == true)
     end
-    @steps = @navigation.steps
-    console
-    @step_markers = @steps.map do |step|
-      {
-        lat: step.latitude,
-        lng: step.longitude,
-      }
-    end
+
+    # Places qui sont des steps
+    steps_places = @navigation.steps.map(&:place)
+    visited_steps_places = steps_places.filter(&:visited)
+    not_visited_steps_places = steps_places.filter { |p| !p.visited }
+    # Places qui sont PAS des steps
+    places = @places.filter { |place| !steps_places.include?(place) }
+
+    # Generate markers
+    @places_markers = generate_marker_array(places, "info_window")
+    @visited_step_markers = generate_marker_array(visited_steps_places, "info_window")
+    @not_visited_step_markers = generate_marker_array(not_visited_steps_places, "info_window")
   end
 
   def new
@@ -43,16 +63,15 @@ class NavigationsController < ApplicationController
       ]
   end
 
-  def visited
-    @navigation = Navigation.find(params[:place_id])
-  end
+  # def visited
+  #   @navigation = Navigation.find(params[:place_id])
+  # end
 
   def create
     @navigation = Navigation.new(navigation_params)
     @navigation.user = current_user
     @navigation.done = false
     @navigation.date = Date.today
-    # create latitude & longitude --> not working
     @nav_coords = Geocoder.search(@navigation.ending_address.to_s).first.coordinates
     @navigation.ending_longitude = @nav_coords[1]
     @navigation.ending_latitude = @nav_coords[0]

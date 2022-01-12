@@ -27,18 +27,6 @@ class PlacesController < ApplicationController
     redirect_to dashboard_path, notice: 'The place was successfully destroyed.'
   end
 
-  # def add_place_to_itinerary(place) # à appeler dans le show
-  #   # on sélectionnne la navigation --> ok
-  #   @navigation = Navigation.find(params[:navigation_id])
-  #   # on récupère la route entre départ et arrivée, via ses waypoints
-  #   @basic_route = [....waypoints....] routes.waypoint
-  #   # on prend la place --> ok
-  #   @place = Place.find(params[:id])
-  #   # on inscrit la place comme waypoint de la route pour qu'elle y passe
-  #   @basic_route << @place
-  # end
-
-
   private
 
   def place_params
