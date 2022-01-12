@@ -5,12 +5,11 @@ Rails.application.routes.draw do
   get '/direction-test', to: 'pages#direction-test'
   get '/geolocalisation', to: 'pages#geolocalisation'
 
+  patch '/visit-step/:id', to: "steps#visit", as: "visit_step"
+
   resources :navigations, only: %i[show new create] do
     resources :places, only: %i[show] do
       resources :steps, only: :create
-      member do
-        patch :visited, as: 'visited'
-      end
     end
 
     # member do

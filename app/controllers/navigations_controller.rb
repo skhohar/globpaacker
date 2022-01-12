@@ -1,5 +1,5 @@
 class NavigationsController < ApplicationController
-  before_action :set_navigation, only: %i[show add_place_to_itinerary]
+  before_action :set_navigation, only: :show
 
   def generate_marker_array(places_array, info_window_partial_name = nil)
     return places_array.map do |place|
@@ -22,7 +22,7 @@ class NavigationsController < ApplicationController
   end
 
   def show
-    @nav_markers =[
+    @nav_markers = [
       {
         lat: @navigation.starting_latitude,
         lng: @navigation.starting_longitude
@@ -41,8 +41,8 @@ class NavigationsController < ApplicationController
 
     # Places qui sont des steps
     steps_places = @navigation.steps.map(&:place)
-    visited_steps_places = steps_places.filter(&:visited)
-    not_visited_steps_places = steps_places.filter { |p| !p.visited }
+    visited_steps_places = @navigation.steps.filter(&:visited).map(&:place)
+    not_visited_steps_places = @navigation.steps.filter { |s| !s.visited }.map(&:place)
     # Places qui sont PAS des steps
     places = @places.filter { |place| !steps_places.include?(place) }
 
@@ -50,6 +50,7 @@ class NavigationsController < ApplicationController
     @places_markers = generate_marker_array(places, "info_window")
     @visited_step_markers = generate_marker_array(visited_steps_places, "info_window")
     @not_visited_step_markers = generate_marker_array(not_visited_steps_places, "info_window")
+    @steps_markers = generate_marker_array(steps_places, "info_window")
   end
 
   def new
@@ -61,10 +62,6 @@ class NavigationsController < ApplicationController
 
       ]
   end
-
-  # def visited
-  #   @navigation = Navigation.find(params[:place_id])
-  # end
 
   def create
     @navigation = Navigation.new(navigation_params)

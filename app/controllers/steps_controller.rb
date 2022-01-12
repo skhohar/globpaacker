@@ -6,7 +6,7 @@ class StepsController < ApplicationController
     @step = Step.new
     @step.navigation = @navigation
     @step.place = @place
-    @step.status = "proposed"
+    @step.visited = false
     if @step.save
       redirect_to navigation_path(@navigation)
       flash[:notice] = "Let's go!"
@@ -15,7 +15,10 @@ class StepsController < ApplicationController
     end
   end
 
-  def update
+  def visit
+    @step = Step.find(params[:id])
+    @step.visited = true
+    @step.save
+    redirect_to navigation_path(@step.navigation)
   end
-
 end
