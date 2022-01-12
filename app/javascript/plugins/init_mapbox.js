@@ -28,7 +28,7 @@ const initMapbox = () => {
         zoom: 14
       });
 
-      async function getAndDisplayRoute(start, end, steps= []) {
+      async function getAndDisplayRoute(start, end, steps = []) {
         // makes a directions request using walking profile
         let coordsString;
         if (steps.length > 0) {
@@ -45,45 +45,45 @@ const initMapbox = () => {
         const query = await fetch(
           `https://api.mapbox.com/directions/v5/mapbox/walking/${coordsString}?steps=true&geometries=geojson&access_token=${mapboxgl.accessToken}`,
           { method: 'GET' }
-          );
-          const json = await query.json();
-          const data = json.routes[0];
-          console.log(data.duration)
-          const route = data.geometry.coordinates;
-          const geojson = {
-            type: 'Feature',
-            properties: {},
-            geometry: {
-              type: 'LineString',
-              coordinates: route
-            }
-          };
+        );
+        const json = await query.json();
+        const data = json.routes[0];
+        // console.log(data.duration) --> pour avoir la durée du trajet
+        const route = data.geometry.coordinates;
+        const geojson = {
+          type: 'Feature',
+          properties: {},
+          geometry: {
+            type: 'LineString',
+            coordinates: route
+          }
+        };
 
-          // if the route already exists on the map, we'll reset it using setData
-          if (map.getSource('route')) {
-            map.getSource('route').setData(geojson);
-          }
-          // otherwise, we'll make a new request
-          else {
-            map.addLayer({
-              id: 'route',
-              type: 'line',
-              source: {
-                type: 'geojson',
-                data: geojson
-              },
-              layout: {
-                'line-join': 'round',
-                'line-cap': 'round'
-              },
-              paint: {
-                'line-color': '#3887be',
-                'line-width': 5,
-                'line-opacity': 0.75
-              }
-            });
-          }
-          // add turn instructions here at the end
+        // if the route already exists on the map, we'll reset it using setData
+        if (map.getSource('route')) {
+          map.getSource('route').setData(geojson);
+        }
+        // otherwise, we'll make a new request
+        else {
+          map.addLayer({
+            id: 'route',
+            type: 'line',
+            source: {
+              type: 'geojson',
+              data: geojson
+            },
+            layout: {
+              'line-join': 'round',
+              'line-cap': 'round'
+            },
+            paint: {
+              'line-color': '#3887be',
+              'line-width': 5,
+              'line-opacity': 0.75
+            }
+          });
+        }
+        // add turn instructions here at the end
       }
       const displayPoint = (coords, color, name) => {
         // Add starting point to the map
@@ -136,12 +136,11 @@ const initMapbox = () => {
 
       const visitedStepCoords = mapElement.dataset.visitedSteps
         ? JSON.parse(mapElement.dataset.visitedSteps)
-      : []
+        : []
 
       const notVisitedStepCoords = mapElement.dataset.notVisitedSteps
         ? JSON.parse(mapElement.dataset.notVisitedSteps)
         : []
-      console.log(notVisitedStepCoords);
 
       const stepsPlacesArray = mapElement.dataset.stepsPlaces
         ? JSON.parse(mapElement.dataset.stepsPlaces).map((stepPlace) => {
@@ -165,7 +164,7 @@ const initMapbox = () => {
           getAndDisplayRoute(navStartingCoords, navEndingCoords, stepsPlacesArray);
           fitMapToMarkers(map, navMarkers);
 
-          displayMarkers(places, 'red');
+          displayMarkers(places, 'grey');
           displayMarkers(visitedStepCoords, 'green');
           displayMarkers(notVisitedStepCoords, 'orange');
 
