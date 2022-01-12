@@ -3,22 +3,25 @@
     <div class="title-card">
       <h1 class="text-center"><%= @place.name %></h1>
     </div>
-  </div>
+  <ul>
+    <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %>
+    </li>
+     <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> 
+     </li>
+     <li>
+     <strong> Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
+     </li>
+     <li>
+     <strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> 
+     </li> 
+     <li>
+     <strong>Rating: </strong> <%= @place.rating %> /5
+     </li>
+     <li>
+     <strong>To know everything: </strong> <%= @place.description %>
+     </li>
+  </ul>
 
-      <div class="photo">
-        <%= image_tag(@place.photo, :class => "imageplace") %>
-      </div>
-    <div class="container-fluid show-place-bottom">
-      <ul>
-        <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %>
-        </li>
-        <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
-        </li>
-        <li><strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Rating: </strong> <%= @place.rating %> /5
-        </li>
-        <li><strong>To know everything: </strong> <%= @place.description %>
-       </li>
-      </ul>
     <% if @navigation = Navigation.where(:done == false) %>
        <%= link_to navigation_place_steps_path(@navigation, @place, @step), method: :post do %>
           <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
