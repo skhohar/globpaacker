@@ -11,7 +11,11 @@ class NavigationsController < ApplicationController
          lat: @navigation.ending_latitude,
          lng: @navigation.ending_longitude
        }]
-    @places = Place.all
+       if @navigation.weather == "Rainy" || @navigation.weather == "Windy"
+         @places = Place.where(:exterior == false)
+     else
+         @places = Place.where(:exterior == true)
+     end
     @places_markers = @places.geocoded.map do |place|
       {
         lat: place.latitude,

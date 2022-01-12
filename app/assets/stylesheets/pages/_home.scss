@@ -11,7 +11,7 @@
   padding-top: 10rem;
 }
 
-img {
+.imagelog {
   width: 10em;
   height: 10em;
 }
@@ -20,9 +20,12 @@ img {
   font-size: 20px;
   color: #eaf0f1 !important;
   font-weight: bold;
-  position: absolute;
-  bottom: 30px;
-  left: 20px !important;
+  display: inline-block;
+  position: relative;
+  right: 35px;
+  height:50px;
+  top: 340px;
+  left: 8px;
   }
 
 .two-buttons {
