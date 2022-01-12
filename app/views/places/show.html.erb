@@ -1,4 +1,9 @@
 <div class="wrapperall">
+  <div class="backbut">
+     <%= link_to navigation_path(@navigation) do %>
+          <span class="back"><strong> < Back </strong></span>
+      <% end %>
+  </div>
   <div class="container-fluid show-place">
     <div class="title-card">
       <h1 class="text-center"><%= @place.name %></h1>
@@ -12,22 +17,31 @@
       <ul>
         <li><strong>Duration: </strong><%= @place.duration %> minutes | <%= @place.exterior? ? "Exterior" : "Interior" %>
         </li>
-        <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
-        </li>
-        <li><strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> | <strong>Rating: </strong> <%= @place.rating %> /5
-        </li>
-        <li><strong>To know everything: </strong> <%= @place.description %>
-       </li>
+         <li><strong>Senses: </strong> <%= @place.senses.gsub('"', '').gsub('[', '').gsub(']', '') %> 
+         </li>
+         <li>
+         <strong> Interests: </strong> <%= @place.interest.gsub('"', '').gsub('[', '').gsub(']', '') %>
+         </li>
+         <li>
+         <strong>Environment: </strong> <%= @place.environment.gsub('"', '').gsub('[', '').gsub(']', '') %> 
+         </li> 
+         <li>
+         <strong>Rating: </strong> <%= @place.rating %> /5
+         </li>
+         <li>
+         <strong>To know everything: </strong> <%= @place.description %>
+         </li>
       </ul>
-    <% if @step %>
-      <%= link_to visit_step_path(@step), method: :patch do %>
-          <button class="btn btn-secondary trans but-place" id="opbut"><strong> I AM HERE </strong></button>
+
+      <% if @step %>
+        <%= link_to visit_step_path(@step), method: :patch do %>
+            <button class="btn btn-secondary trans but-place" id="opbut"><strong> I AM HERE </strong></button>
+        <% end %>
+      <% else %>
+         <%= link_to navigation_place_steps_path(@navigation, @place), method: :post do %>
+            <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
+         <% end %>
       <% end %>
-    <% else %>
-       <%= link_to navigation_place_steps_path(@navigation, @place), method: :post do %>
-          <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
-       <% end %>
-    <% end %>
     </div>
   </div>
 </div>
