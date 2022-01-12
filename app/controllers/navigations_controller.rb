@@ -41,8 +41,8 @@ class NavigationsController < ApplicationController
 
     # Places qui sont des steps
     steps_places = @navigation.steps.map(&:place)
-    visited_steps_places = steps_places.filter(&:visited)
-    not_visited_steps_places = steps_places.filter { |p| !p.visited }
+    visited_steps_places = @navigation.steps.filter(&:visited).map(&:place)
+    not_visited_steps_places = @navigation.steps.filter { |s| !s.visited }.map(&:place)
     # Places qui sont PAS des steps
     places = @places.filter { |place| !steps_places.include?(place) }
 
@@ -50,6 +50,7 @@ class NavigationsController < ApplicationController
     @places_markers = generate_marker_array(places, "info_window")
     @visited_step_markers = generate_marker_array(visited_steps_places, "info_window")
     @not_visited_step_markers = generate_marker_array(not_visited_steps_places, "info_window")
+    @steps_markers = generate_marker_array(steps_places, "info_window")
   end
 
   def new

@@ -19,14 +19,14 @@
         <li><strong>To know everything: </strong> <%= @place.description %>
        </li>
       </ul>
-    <% if @navigation = Navigation.where(:done == false) %>
-       <%= link_to navigation_place_steps_path(@navigation, @place, @step), method: :post do %>
-          <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
-       <% end %>
-    <% else %>
-      <%= link_to navigation_path(@navigation) do %>
+    <% if @step %>
+      <%= link_to visit_step_path(@step), method: :patch do %>
           <button class="btn btn-secondary trans but-place" id="opbut"><strong> I AM HERE </strong></button>
       <% end %>
+    <% else %>
+       <%= link_to navigation_place_steps_path(@navigation, @place), method: :post do %>
+          <button class="btn btn-secondary trans but-place" id="opbut"><strong> ADD TO MY ITINENARY </strong></button>
+       <% end %>
     <% end %>
     </div>
   </div>
