@@ -23,6 +23,14 @@ class NavigationsController < ApplicationController
         info_window: render_to_string(partial: "info_window", locals: { place: place })
       }
     end
+    @steps = @navigation.steps
+    console
+    @step_markers = @steps.map do |step|
+      {
+        lat: step.latitude,
+        lng: step.longitude,
+      }
+    end
   end
 
   def new
@@ -33,12 +41,6 @@ class NavigationsController < ApplicationController
         lng: @navigation.starting_latitude
 
       ]
-  end
-
-  def add_place_to_itinerary(place)
-    # on prend la navigation --> ok
-    # on prend la place
-    # on inscrit les coordonnées de la place comme waypoint
   end
 
   def visited
@@ -60,9 +62,6 @@ class NavigationsController < ApplicationController
       flash[:notice] = 'Something is missing'
       render :new
     end
-  end
-
-  def navigation_decision
   end
 
   private
