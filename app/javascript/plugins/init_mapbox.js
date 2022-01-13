@@ -171,7 +171,7 @@ const initMapbox = () => {
           const places = JSON.parse(mapElement.dataset.places);
           // make an initial directions request that
           // starts and ends at the same location
-          displayPoint(navEndingCoords, '#3887be', 'end-point');
+          displayPoint(navEndingCoords, '#F5114B', 'end-point');
           getAndDisplayRoute(navStartingCoords, navEndingCoords, stepsPlacesArray);
           fitMapToMarkers(map, navMarkers);
 
