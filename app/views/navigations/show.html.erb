@@ -1,4 +1,8 @@
 <div class="container-fluid" style="padding-top: 20px; height: 100%">
+  <div id="time-remaining" style="padding-top: 20px; height: 100%"
+  data-time-available="<%= @time_available%>"
+  data-time-places-planned="<%= @time_places_planned * 60%>">
+  </div>
   <div id="map"
     style="width: 100%; height: 800px;"
     data-nav="<%= @nav_markers.to_json %>"
