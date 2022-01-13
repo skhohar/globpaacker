@@ -48,7 +48,7 @@ const initMapbox = () => {
           );
           const json = await query.json();
           const data = json.routes[0];
-          console.log(data.duration)
+          // console.log(data.duration)
           const route = data.geometry.coordinates;
           const geojson = {
             type: 'Feature',
@@ -141,7 +141,6 @@ const initMapbox = () => {
       const notVisitedStepCoords = mapElement.dataset.notVisitedSteps
         ? JSON.parse(mapElement.dataset.notVisitedSteps)
         : []
-      console.log(notVisitedStepCoords);
 
       const stepsPlacesArray = mapElement.dataset.stepsPlaces
         ? JSON.parse(mapElement.dataset.stepsPlaces).map((stepPlace) => {
@@ -151,7 +150,6 @@ const initMapbox = () => {
           ]
         })
         : []
-      const places = JSON.parse(mapElement.dataset.places);
 
       // create a function to make a directions request
 
@@ -159,6 +157,7 @@ const initMapbox = () => {
         // CREATE ITINERARY
         displayPoint(navStartingCoords, '#3887be', 'start-point');
         if (navEndingCoords[1] && navEndingCoords[0]) {
+          const places = JSON.parse(mapElement.dataset.places);
           // make an initial directions request that
           // starts and ends at the same location
           displayPoint(navEndingCoords, '#3887be', 'end-point');
