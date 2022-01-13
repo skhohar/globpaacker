@@ -48,7 +48,15 @@ const initMapbox = () => {
         );
         const json = await query.json();
         const data = json.routes[0];
-        // console.log(data.duration) --> pour avoir la durée du trajet
+
+        const timeContainer = document.querySelector("#time-remaining")
+        const timeAvailable = timeContainer.dataset.timeAvailable
+        const timePlacesPlanned = timeContainer.dataset.timePlacesPlanned
+        const timeWalking = data.duration
+        const timeRemaining = (timeAvailable - (timePlacesPlanned + timeWalking))/60
+        timeContainer.innerText=`After your exploration, you will still have ${timeRemaining} minutes available at your destination for freestyle!`
+
+        // console.dir(timeContainer)
         const route = data.geometry.coordinates;
         const geojson = {
           type: 'Feature',
