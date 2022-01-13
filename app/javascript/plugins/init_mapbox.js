@@ -167,7 +167,6 @@ const initMapbox = () => {
           displayMarkers(places, 'grey');
           displayMarkers(visitedStepCoords, 'green');
           displayMarkers(notVisitedStepCoords, 'orange');
-
         }
       });
     });
