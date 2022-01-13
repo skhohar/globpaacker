@@ -1,0 +1,5 @@
+meta_product_name: "Globpacker"
+meta_title: "Globpacker - Travellers"
+meta_description: "This application was designed for travellers who are passing through a city and who wish to discover places during a limited time. "
+meta_image: "image-end-2.jpg" # should exist in `app/assets/images/`
+#facebook: "https://www.facebook.com/Globpacker-110608921509892"

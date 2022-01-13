@@ -150,7 +150,6 @@ const initMapbox = () => {
           ]
         })
         : []
-      const places = JSON.parse(mapElement.dataset.places);
 
       // create a function to make a directions request
 
@@ -158,6 +157,7 @@ const initMapbox = () => {
         // CREATE ITINERARY
         displayPoint(navStartingCoords, '#3887be', 'start-point');
         if (navEndingCoords[1] && navEndingCoords[0]) {
+          const places = JSON.parse(mapElement.dataset.places);
           // make an initial directions request that
           // starts and ends at the same location
           displayPoint(navEndingCoords, '#3887be', 'end-point');
