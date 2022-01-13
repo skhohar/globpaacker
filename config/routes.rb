@@ -5,19 +5,19 @@ Rails.application.routes.draw do
   get '/direction-test', to: 'pages#direction-test'
   get '/geolocalisation', to: 'pages#geolocalisation'
 
- resources :navigations, only: %i[show new create] do
-  resources :places, only: %i[show] do
-      member do
-         patch :visited, as: 'visited'
-      end
+  patch '/visit-step/:id', to: "steps#visit", as: "visit_step"
+
+  resources :navigations, only: %i[show new create] do
+    resources :places, only: %i[show] do
+      resources :steps, only: :create
     end
- 
-    member do
-      :places
-      get '/navigation_decision', to: 'pages#navigation_decision', as: 'decision'
-      get '/itinerary_to_nextplace', to: 'pages#itinerary_to_nextplace', as: 'itinerary'
-    end
- end
+
+    # member do
+    #   :places
+    #   get '/navigation_decision', to: 'pages#navigation_decision', as: 'decision'
+    #   get '/itinerary_to_nextplace', to: 'pages#itinerary_to_nextplace', as: 'itinerary'
+    # end
+  end
 
   resources :places, only: %i[new create destroy]
 end

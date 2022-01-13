@@ -1,8 +1,10 @@
 class PlacesController < ApplicationController
 
+before_action :set_place, only: %i[show destroy visited]
+
   def show
     @navigation = Navigation.find(params[:navigation_id])
-    @place = Place.find(params[:id])
+    @step = @navigation.steps.find { |step| step.place == @place }
   end
 
 
@@ -14,7 +16,7 @@ class PlacesController < ApplicationController
   @place = Place.new(place_params)
   @place.user = current_user
     if @place.save
-      redirect_to dashboard_path notice: "You successfully create a new place"
+      redirect_to dashboard_path notice: "You successfully created a new place"
     else
       flash[:notice] = 'Something is missing'
       render :new
@@ -22,27 +24,18 @@ class PlacesController < ApplicationController
   end
 
   def destroy
-    @place = Place.find(params[:id])
     @place.destroy
     redirect_to dashboard_path, notice: 'The place was successfully destroyed.'
   end
-
-  # def add_place_to_itinerary(place) # à appeler dans le show
-  #   # on sélectionnne la navigation --> ok
-  #   @navigation = Navigation.find(params[:navigation_id])
-  #   # on récupère la route entre départ et arrivée, via ses waypoints
-  #   @basic_route = [....waypoints....] routes.waypoint
-  #   # on prend la place --> ok
-  #   @place = Place.find(params[:id])
-  #   # on inscrit la place comme waypoint de la route pour qu'elle y passe
-  #   @basic_route << @place
-  # end
-
 
   private
 
   def place_params
     params.require(:place).permit(:name, :photo, :address, :duration, :description, :exterior, :interest, :senses,
                                   :environment, :rating)
+  end
+
+  def set_place
+    @place = Place.find(params[:id])
   end
 end
