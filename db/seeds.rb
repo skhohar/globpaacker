@@ -6,7 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'csv'
-require 'faker'
 require "open-uri"
 
 
@@ -28,7 +27,7 @@ puts 'created 3 users'
 n1 = Navigation.create(starting_longitude: "5.373907044477363", starting_latitude: "43.294522397027606", ending_longitude: "5.380254614802709", ending_latitude: "43.30283129514038", done: true, user_id: User.last.id, time_deadline: "10:12:22.869900", date: "2022-01-06", weather: "Sunny")
 
 puts 'created 1 navigation'
-puts 'seed done'
+puts 'now creating places...'
 
 p1 = Place.new(name: "Musée Cantini",
               interest: ["culture", "contemporary arts"],
@@ -426,10 +425,5 @@ places.each do |place|
   place.save!
  puts 'created 1 place .....'
 end
-
-
-step1 = Step.create!(navigation_id: Navigation.last.id, place_id: Place.last.id, status: "visited")
-
- puts 'created 1 step'
 
  puts ' done seeding ......'

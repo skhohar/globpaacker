@@ -15,7 +15,6 @@ const fitMapToMarkers = (map, markers) => {
   map.fitBounds(bounds, { padding: 50, maxZoom: 15, duration: 0 });
 };
 
-
 const initMapbox = () => {
   const mapElement = document.getElementById('map');
 
@@ -49,6 +48,7 @@ const initMapbox = () => {
           );
           const json = await query.json();
           const data = json.routes[0];
+          console.log(data.duration)
           const route = data.geometry.coordinates;
           const geojson = {
             type: 'Feature',
@@ -112,6 +112,20 @@ const initMapbox = () => {
           }
         });
       }
+
+      // dans l'idéal, il faudrait harmoniser pour que les méthodes prennent toutes soit un tableau soit un objet. Celle-ci prend un objet.
+      const displayMarkers = (markers, markerColor = "yellow") => {
+        markers.forEach((place) => {
+          const popup = new mapboxgl.Popup().setHTML(place.info_window);
+          new mapboxgl.Marker({ color: markerColor })
+            .setLngLat([
+              place.lng,
+              place.lat
+            ])
+            .setPopup(popup)
+            .addTo(map);
+        });
+      }
       // READ DATA COMING FROM BACKEND
       const navStartingCoords = [position.coords.longitude, position.coords.latitude];
       const navEndingCoords = [
@@ -120,15 +134,24 @@ const initMapbox = () => {
       ]
       const navMarkers = [navStartingCoords, navEndingCoords]
 
-      const stepCoords = mapElement.dataset.steps
-        ? JSON.parse(mapElement.dataset.steps).map((step) => {
-          return [
-            step.lng,
-            step.lat
-          ]
-        })
+      const visitedStepCoords = mapElement.dataset.visitedSteps
+        ? JSON.parse(mapElement.dataset.visitedSteps)
       : []
 
+      const notVisitedStepCoords = mapElement.dataset.notVisitedSteps
+        ? JSON.parse(mapElement.dataset.notVisitedSteps)
+        : []
+      console.log(notVisitedStepCoords);
+
+      const stepsPlacesArray = mapElement.dataset.stepsPlaces
+        ? JSON.parse(mapElement.dataset.stepsPlaces).map((stepPlace) => {
+          return [
+            stepPlace.lng,
+            stepPlace.lat
+          ]
+        })
+        : []
+      const places = JSON.parse(mapElement.dataset.places);
 
       // create a function to make a directions request
 
@@ -138,21 +161,14 @@ const initMapbox = () => {
         if (navEndingCoords[1] && navEndingCoords[0]) {
           // make an initial directions request that
           // starts and ends at the same location
-          const places = JSON.parse(mapElement.dataset.places);
-            places.forEach((place) => {
-              const popup = new mapboxgl.Popup().setHTML(place.info_window);
-              new mapboxgl.Marker()
-                .setLngLat([
-                  place.lng,
-                  place.lat
-                ])
-                .setPopup(popup)
-                .addTo(map);
-            });
-
-          getAndDisplayRoute(navStartingCoords, navEndingCoords, stepCoords);
-          fitMapToMarkers(map, navMarkers);
           displayPoint(navEndingCoords, '#3887be', 'end-point');
+          getAndDisplayRoute(navStartingCoords, navEndingCoords, stepsPlacesArray);
+          fitMapToMarkers(map, navMarkers);
+
+          displayMarkers(places, 'red');
+          displayMarkers(visitedStepCoords, 'green');
+          displayMarkers(notVisitedStepCoords, 'orange');
+
         }
       });
     });
