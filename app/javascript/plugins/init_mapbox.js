@@ -50,11 +50,12 @@ const initMapbox = () => {
         const data = json.routes[0];
 
         const timeContainer = document.querySelector("#time-remaining")
-        const timeAvailable = timeContainer.dataset.timeAvailable
-        const timePlacesPlanned = timeContainer.dataset.timePlacesPlanned
-        const timeWalking = data.duration
+        const timeAvailable = Number(timeContainer.dataset.timeAvailable)
+        const timePlacesPlanned = Number(timeContainer.dataset.timePlacesPlanned)
+        const timeWalking = Number(data.duration.toString().split('.')[0])
+
         const timeRemaining = (timeAvailable - (timePlacesPlanned + timeWalking))/60
-        timeContainer.innerText=`After your exploration, you will still have ${timeRemaining} minutes available at your destination for freestyle!`
+        timeContainer.innerText = `After your exploration, you will still have ${timeRemaining.toString().split('.')[0]} minutes available at your destination for freestyle!`
 
         // console.dir(timeContainer)
         const route = data.geometry.coordinates;
