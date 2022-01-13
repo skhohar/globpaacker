@@ -1,6 +1,6 @@
- .page-404{
+ body{
  display:block;
-  background-color: #94b3e5;
+  background-color: #96b8ee;
 }
 .page-404 * {
   box-sizing: border-box;
