@@ -55,7 +55,9 @@ const initMapbox = () => {
         const timeWalking = Number(data.duration.toString().split('.')[0])
 
         const timeRemaining = (timeAvailable - (timePlacesPlanned + timeWalking))/60
-        timeContainer.innerText = `After your exploration, you will still have ${timeRemaining.toString().split('.')[0]} minutes available at your destination for freestyle!`
+
+        timeContainer.innerHTML=`After your exploration, you will still have <span id="textcolor"> ${timeRemaining.toString().split('.')[0]} minutes available </span> at your destination for freestyle!`
+
 
         // console.dir(timeContainer)
         const route = data.geometry.coordinates;

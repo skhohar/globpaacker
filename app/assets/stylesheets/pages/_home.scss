@@ -22,10 +22,9 @@
   font-weight: bold;
   display: inline-block;
   position: relative;
-  right: 35px;
   height:50px;
-  top: 340px;
-  left: 8px;
+  top: 291px;
+  left: -1px;
   }
 
 .two-buttons {
@@ -54,13 +53,16 @@ button:hover {
   width: 74px;
   font-weight: bolder;
   border-radius: 10px;
+  margin-top: 2em;
 }
 
 .logout-but {
   width: 55px;
   margin-left: 7px;
   height: 60px;
-  display: flex;
-  justify-items: center;
-  align-items: center;
+  position: relative;
+  top: -426px;
+  left: 164px;
+  background-color: #9fd4dbfa;
+  border: none;
 }
