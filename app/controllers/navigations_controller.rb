@@ -50,6 +50,8 @@ class NavigationsController < ApplicationController
     @visited_step_markers = generate_marker_array(visited_steps_places, "info_window")
     @not_visited_step_markers = generate_marker_array(not_visited_steps_places, "info_window")
     @steps_markers = generate_marker_array(steps_places, "info_window")
+      console
+
   end
 
   def new
@@ -78,16 +80,23 @@ class NavigationsController < ApplicationController
     end
   end
 
-  # def time # ATTENTION, EN SECONDES
-  #   @time_to_deadline = @navigation.time_deadline - Time.now # si c'est des secondes
-  # #  @time_wandering = routes.duration --> cf js
-  # # on selectionne les places qui on des steps
 
-  # # on fait la somme de la durée des places qui sont visitées
-  # # on fait la somme de la durée des places restantes (à visiter) : @plcace.duration x 60 = b (temps de visite total)
-  # # le temps restant va être time to deadline - (timewandering + b)
-  # # alerte se déclanche quand temps restant < @time_to_deadline * 1,5
-  # end
+  def time # ATTENTION, EN SECONDES
+  # on selectionne
+    @time_to_deadline = @navigation.time_deadline - Time.now # si c'est des secondes
+  #  @time_wandering = routes.duration --> cf js
+  # on selectionne les places qui on des steps et qui ne sont pas visitées : array de steps
+    @places_planned = @navigation.steps.filter {|step| step.visited == false}
+  # on fait la somme de la durée des places restantes (à visiter) : @place.duration x 60 = b (temps de visite total)
+  @time_places_planned = O #attention remplacer par @time_wandering une fois récupéré via json et faire en secondes
+  @places_planned.each do |step|
+      @time_places_planned += step.place.duration
+    end
+    @total_time_spent = @time_wandering + @time_places_planned
+  # le temps restant va être time to deadline - (timewandering + b)
+  @remaining_time = @time_to_deadline - (@total_time_spent*60)
+  # alerte se déclanche quand temps restant < @time_to_deadline * 1,5
+  end
 
   private
 
