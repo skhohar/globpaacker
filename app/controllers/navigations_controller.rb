@@ -53,14 +53,15 @@ class NavigationsController < ApplicationController
 
     # Calculation remaining time :
     # 1 - Calculation time available
-      @time_available = Time.now - @navigation.time_deadline # si c'est des secondes
-    # 2 - Time walking : in js @time_wandering = routes.duration
-    # 3 - Calculation time visiting places
-    # A - We only want places selected but not visited yet
+      @time_deadline_in_seconds = (@navigation.time_deadline.hour*3600) + (@navigation.time_deadline.min*60)
+      @time_now_in_seconds = (Time.now.hour*3600) + (Time.now.min*60)
+      @time_available = @time_deadline_in_seconds - @time_now_in_seconds # si c'est des secondes
+    # 2 - Calculation time visiting all places
+    # A - We only want places selected by user but not visited yet
       @places_planned = @navigation.steps.filter {|step| step.visited == false}
     # # B - We want a sum of the time spent in each place
-    @time_places_planned = 0
-    @places_planned.each do |step|
+      @time_places_planned = 0
+      @places_planned.each do |step|
         @time_places_planned += step.place.duration
       end
     return @time_places_planned
