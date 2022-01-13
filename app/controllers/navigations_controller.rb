@@ -1,6 +1,5 @@
 class NavigationsController < ApplicationController
   before_action :set_navigation, only: :show
-
   def generate_marker_array(places_array, info_window_partial_name = nil)
     return places_array.map do |place|
       if info_window_partial_name
@@ -78,6 +77,17 @@ class NavigationsController < ApplicationController
       render :new
     end
   end
+
+  # def time # ATTENTION, EN SECONDES
+  #   @time_to_deadline = @navigation.time_deadline - Time.now # si c'est des secondes
+  # #  @time_wandering = routes.duration --> cf js
+  # # on selectionne les places qui on des steps
+
+  # # on fait la somme de la durée des places qui sont visitées
+  # # on fait la somme de la durée des places restantes (à visiter) : @plcace.duration x 60 = b (temps de visite total)
+  # # le temps restant va être time to deadline - (timewandering + b)
+  # # alerte se déclanche quand temps restant < @time_to_deadline * 1,5
+  # end
 
   private
 
