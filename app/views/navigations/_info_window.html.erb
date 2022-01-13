@@ -1,9 +1,9 @@
 <div class="place-card" style="padding: 20px">
 <h4><%= place.name %></h2>
 <ul>
-<li>Address: <%= place.address %></li>
-<li>Suggested time to spend there: <%= place.duration %> min</li>
-<li>Rating: <%= place.rating %>/5</li>
+<li><strong>Address:</strong> <%= place.address%></li>
+<li><strong>Suggested time to spend there:</strong> <%= place.duration %> min</li>
+<li><strong>Rating:</strong> <%= place.rating %>/5</li>
 </ul>
 <%= link_to "Read more & add to itinerary", navigation_place_path(@navigation, place) %>
 </div>
