@@ -54,7 +54,7 @@ const initMapbox = () => {
         const timePlacesPlanned = Number(timeContainer.dataset.timePlacesPlanned)
         const timeWalking = Number(data.duration.toString().split('.')[0])
 
-        const timeRemaining = (timeAvailable - (timePlacesPlanned + timeWalking))/60
+        const timeRemaining = ((timeAvailable - (timePlacesPlanned + timeWalking))/60) - 60
         if (timeContainer) {
           timeContainer.innerHTML=`After your exploration, you will still have <span id="textcolor"> ${timeRemaining.toString().split('.')[0]} minutes available </span> at your destination for freestyle!`
         }
