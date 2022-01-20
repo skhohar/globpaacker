@@ -11,6 +11,9 @@ This app is built using [Le Wagon minimal + devise rails template](https://githu
 
 It is mainly based on the [Mapbox navigation API](https://docs.mapbox.com/api/overview/).
 
+The app is designed to be seen from an iphone XR.
+
+
 ### About the product:
 
 This app is...<br>
